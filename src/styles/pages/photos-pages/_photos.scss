@@ -1,0 +1,156 @@
+.photos {
+	width: 100%;
+	padding: 0;
+	background-color: var(--white-100);
+
+	&__grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 11px;
+		padding: 0 20px;
+
+		@include tablet {
+			gap: 10px;
+		}
+
+		@include mobile {
+			gap: 6px;
+			padding: 0;
+		}
+	}
+
+	&__item {
+		position: relative;
+		overflow: hidden;
+		background-color: var(--grey-back);
+		border-radius: 4px;
+		flex-shrink: 0;
+		height: 280px;
+		
+		@include mobile {
+			height: 262px;
+		}
+	}
+
+	&__image,
+	&__video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		border-radius: 4px;
+	}
+
+	&__video {
+		background-color: var(--dark-100);
+	}
+}
+
+// Object page specific
+.photos--object {
+	.photos__item {
+		&--1 {
+			width: 33.4%;
+
+			@include tablet {
+				width: 58.8%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--2 {
+			width: 15.2%;
+
+			@include tablet {
+				width: 39.8%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--3 {
+			width: 33.9%;
+
+			@include tablet {
+				width: 44.3%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--4 {
+			width: 15.1%;
+
+			@include tablet {
+				width: 26.7%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--5 {
+			width: 15%;
+
+			@include tablet {
+				width: 26.4%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--6 {
+			width: 15%;
+
+			@include tablet {
+				width: 26.4%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--7 {
+			width: 29.9%;
+
+			@include tablet {
+				width: 32%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--8 {
+			width: 37.6%;
+
+			@include tablet {
+				width: 39%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+	}
+}

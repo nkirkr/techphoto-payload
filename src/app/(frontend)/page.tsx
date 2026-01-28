@@ -1,5 +1,15 @@
-import PageTemplate, { generateMetadata } from './[slug]/page'
+'use client'
 
-export default PageTemplate
+import { Hero, WhatWeDo, Steps, Details, Contact } from '@/components/Home'
 
-export { generateMetadata }
+export default function HomePage() {
+  return (
+    <main>
+      <Hero />
+      <WhatWeDo />
+      <Steps />
+      <Details />
+      <Contact />
+    </main>
+  )
+}

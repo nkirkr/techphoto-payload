@@ -1,0 +1,32 @@
+:root {
+	--container-width: 1440px;
+	--container-padding: 15px;
+
+	--font-family: "Montserrat", sans-serif;
+	--second-family: "Wadik", sans-serif;
+	--third-family: "Nunito Sans", sans-serif;
+
+	--white-100: #fff;
+	--white-80: rgba(255, 255, 255, 0.8);
+	--white-60: rgba(255, 255, 255, 0.6);
+	--white-40: rgba(255, 255, 255, 0.4);
+	--white-20: rgba(255, 255, 255, 0.2);
+	--white-10: rgba(255, 255, 255, 0.1);
+
+	--dark-100: #1e1e1e;
+	--dark-80: rgba(30, 30, 30, 0.8);
+	--dark-60: rgba(30, 30, 30, 0.6);
+	--dark-40: rgba(30, 30, 30, 0.4);
+	--dark-20: rgba(30, 30, 30, 0.2);
+
+	--grey-100: #ebebeb;
+	--grey-back: rgba(217, 217, 217, 0.3);
+
+	--orange-light: #ef400f;
+	--orange-dark: #c4360f;
+}
+
+.dark {
+	--page-bg: #252526;
+	--text-color: #fff;
+}
