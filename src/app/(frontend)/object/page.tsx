@@ -1,9 +1,9 @@
-'use client'
-
+import { getPhotoPage } from '@/utilities/getPhotoPage'
+import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
-const objectPhotos = [
+const defaultPhotos = [
   { type: 'image' as const, src: '/object/1.png', alt: 'Предметная съемка промышленных изделий' },
   { type: 'image' as const, src: '/object/2.png', alt: 'Фотосъемка продукции на нейтральном фоне' },
   { type: 'video' as const, src: '/example.mp4', alt: 'Видео предметной съемки' },
@@ -14,7 +14,7 @@ const objectPhotos = [
   { type: 'image' as const, src: '/object/8.png', alt: 'Фотография изделий на производстве' },
 ]
 
-const whereItems = [
+const defaultWhereItems = [
   {
     icon: '/svgicons/photos/post.svg',
     title: 'Рекламные<br />материалы',
@@ -23,9 +23,9 @@ const whereItems = [
   },
   {
     icon: '/svgicons/photos/sell.svg',
-    title: 'Продажи<br />и каталогизация',
+    title: 'Продажи<br />и\u00A0каталогизация',
     description:
-      'Интернет-каталог на сайте — чистые фото продукции на белом/нейтральном фоне. Прайс-листы и коммерческие предложения — иллюстрации товаров. Маркетплейсы и онлайн-площадки.',
+      'Интернет-каталог на сайте — чистые фото продукции на белом/нейтральном фоне. Прайс-листы и коммерческие предложения — иллюстрации товаров. Маркетплейсы и онлайн-площадки (Alibaba, eBay, Avito, Auto.ru для станков и\u00A0т.д.).',
   },
   {
     icon: '/svgicons/photos/search.svg',
@@ -35,19 +35,25 @@ const whereItems = [
   },
   {
     icon: '/svgicons/photos/partners.svg',
-    title: 'B2B и партнёры',
+    title: 'B2B\u00A0и\u00A0партнёры',
     description:
-      'Презентации для клиентов — детализированные фото продукции. Инвесторы и дистрибьюторы — показ ассортимента и качества. Сравнительные материалы — демонстрация разных моделей.',
+      'Презентации для клиентов — детализированные фото продукции. Инвесторы и дистрибьюторы — показ ассортимента и качества. Сравнительные материалы — демонстрация разных моделей или вариантов исполнения.',
   },
   {
     icon: '/svgicons/photos/photo.svg',
-    title: 'PR и выставки',
+    title: 'PR\u00A0и\u00A0выставки',
     description:
       'Стенды на выставках — большие фото продукции на постерах. Видео-ролики с анимацией — предметные фото как основа для 3D-визуализаций. Пресс-релизы — изображения новых продуктов.',
   },
 ]
 
-export default function ObjectPage() {
+export default async function ObjectPage() {
+  const cmsData = await getPhotoPage('object')
+
+  if (cmsData) {
+    return <PhotoPageTemplate data={cmsData} variant="object" />
+  }
+
   return (
     <main>
       <PageHero
@@ -57,7 +63,7 @@ export default function ObjectPage() {
         heroImageAlt="Предметная съёмка промышленных изделий и оборудования"
       />
 
-      <PhotosGrid photos={objectPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="object" />
 
       <Cycle
         number="3"
@@ -68,7 +74,7 @@ export default function ObjectPage() {
         imageAlt="Акцент на важном - предметная съёмка"
       />
 
-      <WhereUsed title="где это используется?" items={whereItems} />
+      <WhereUsed title="где это используется?" items={defaultWhereItems} />
 
       <Contact />
     </main>

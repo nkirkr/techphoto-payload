@@ -4,6 +4,7 @@ import Image from 'next/image'
 
 interface WhereItem {
   icon: string
+  iconOrange?: boolean
   title: string
   description: string
 }
@@ -11,14 +12,18 @@ interface WhereItem {
 interface WhereUsedProps {
   title?: string
   items: WhereItem[]
+  variant?: 'default' | 'three'
 }
 
 export const WhereUsed: React.FC<WhereUsedProps> = ({
   title = 'где это используется?',
   items,
+  variant = 'default',
 }) => {
+  const sectionClass = variant === 'three' ? 'where where--three' : 'where'
+
   return (
-    <section className="where">
+    <section className={sectionClass}>
       <div className="container">
         <h2 className="where__title">
           {title.split(' ').slice(0, 2).join(' ')} <br />
@@ -32,7 +37,7 @@ export const WhereUsed: React.FC<WhereUsedProps> = ({
             <Image
               src={item.icon}
               alt=""
-              className="where__icon"
+              className={`where__icon${item.iconOrange ? ' where__icon--orange' : ''}`}
               width={60}
               height={60}
               aria-hidden="true"
@@ -41,7 +46,10 @@ export const WhereUsed: React.FC<WhereUsedProps> = ({
               className="where__item-title"
               dangerouslySetInnerHTML={{ __html: item.title }}
             />
-            <p className="where__item-description">{item.description}</p>
+            <p
+              className="where__item-description"
+              dangerouslySetInnerHTML={{ __html: item.description }}
+            />
           </article>
         ))}
       </div>

@@ -1,9 +1,9 @@
-'use client'
-
+import { getPhotoPage } from '@/utilities/getPhotoPage'
+import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
-const portraitPhotos = [
+const defaultPhotos = [
   { type: 'image' as const, src: '/portrait/1.png', alt: 'Портрет сотрудника' },
   { type: 'image' as const, src: '/portrait/2.png', alt: 'Корпоративная фотосъемка' },
   { type: 'image' as const, src: '/portrait/3.png', alt: 'Бизнес-портрет' },
@@ -14,40 +14,34 @@ const portraitPhotos = [
   { type: 'image' as const, src: '/portrait/8.png', alt: 'Корпоративное фото' },
 ]
 
-const whereItems = [
+const defaultWhereItems = [
+  {
+    icon: '/svgicons/photos/tick.svg',
+    title: 'Корпоративные<br />и PR-материалы',
+    description:
+      'Портреты сотрудников и руководителей для сайта компании («О нас», «Команда», «Руководство»). Интервью и публикации в отраслевых СМИ, пресс-релизы, социальные сети. Визуализация корпоративной культуры, создание образа профессиональной и дружелюбной команды.',
+  },
   {
     icon: '/svgicons/photos/humans.svg',
-    title: 'Корпоративный<br />сайт',
+    title: 'Маркетинг и реклама',
     description:
-      'Раздел «О компании» — фото руководства и команды. Страницы отделов — портреты специалистов. Блог компании — авторские фото.',
+      'Использование фотографий операторов станков или инженеров в буклетах, презентациях и постерах — подчёркивает профессионализм и человеческий фактор производства. Социальные сети и рекламные кампании, где важен личный контакт с брендом.',
   },
   {
-    icon: '/svgicons/photos/presentation.svg',
-    title: 'Презентации<br />и отчёты',
+    icon: '/svgicons/photos/smile.svg',
+    title: 'Мероприятия и события',
     description:
-      'Годовые отчёты — фото ключевых сотрудников. Презентации для инвесторов. Материалы для партнёров.',
-  },
-  {
-    icon: '/svgicons/photos/post.svg',
-    title: 'Социальные<br />сети',
-    description:
-      'LinkedIn — профессиональные профили. Корпоративные страницы — командные фото. HR-контент — привлечение талантов.',
-  },
-  {
-    icon: '/svgicons/photos/archive.svg',
-    title: 'Внутренние<br />коммуникации',
-    description:
-      'Корпоративный портал — профили сотрудников. Доска почёта. Внутренние издания компании.',
-  },
-  {
-    icon: '/svgicons/photos/beenhere.svg',
-    title: 'HR и рекрутинг',
-    description:
-      'Карьерные страницы — фото рабочей атмосферы. Вакансии — визуализация команды. Онбординг новых сотрудников.',
+      'Отчеты о конференциях, выставках, командных активностях. Документирование корпоративных мероприятий и награждений сотрудников.',
   },
 ]
 
-export default function PortraitsPage() {
+export default async function PortraitsPage() {
+  const cmsData = await getPhotoPage('portraits')
+
+  if (cmsData) {
+    return <PhotoPageTemplate data={cmsData} variant="portrait" />
+  }
+
   return (
     <main>
       <PageHero
@@ -57,9 +51,9 @@ export default function PortraitsPage() {
         heroImageAlt="Корпоративная съёмка персонала"
       />
 
-      <PhotosGrid photos={portraitPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="object" />
 
-      <WhereUsed title="где это используется?" items={whereItems} />
+      <WhereUsed title="где это используется?" items={defaultWhereItems} variant="three" />
 
       <Contact />
     </main>

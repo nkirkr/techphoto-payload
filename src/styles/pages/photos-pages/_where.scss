@@ -9,6 +9,66 @@
 		padding: 40px 0;
 	}
 
+	// Модификатор для macro страницы - 3 элемента в ряд
+	&--three {
+		.where__grid {
+			grid-template-columns: repeat(3, 1fr);
+
+			@include tablet {
+				grid-template-columns: 1fr;
+			}
+
+			@include mobile {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.where__item {
+			// Сброс nth-child стилей для 5-колоночной сетки
+			&:nth-child(4),
+			&:nth-child(5) {
+				grid-column: span 1;
+				background-color: transparent;
+				border-radius: 0;
+			}
+
+			&:nth-child(1) {
+				background-color: var(--grey-back);
+				border-radius: 0 80px 80px 0;
+
+				@include tablet {
+					background-color: var(--white-100);
+					border-radius: 0;
+				}
+
+				@include mobile {
+					background-color: var(--white-100);
+					border-radius: 0;
+				}
+			}
+
+			&:nth-child(2) {
+				background-color: transparent;
+				border-radius: 0;
+			}
+
+			&:nth-child(3) {
+				background-color: var(--grey-back);
+				border-radius: 80px 0 0 80px;
+
+				@include tablet {
+					background-color: var(--white-100);
+					border-radius: 0;
+				}
+
+				@include mobile {
+					background-color: var(--white-100);
+					border-radius: 0;
+				}
+			}
+		}
+	}
+
 	&__title {
 		font-family: var(--font-family);
 		font-weight: 700;

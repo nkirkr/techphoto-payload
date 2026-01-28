@@ -1,9 +1,9 @@
-'use client'
-
+import { getPhotoPage } from '@/utilities/getPhotoPage'
+import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
-const machinePhotos = [
+const defaultPhotos = [
   { type: 'image' as const, src: '/machine/1.png', alt: 'Съемка станков' },
   { type: 'image' as const, src: '/machine/2.png', alt: 'Фотосъемка оборудования' },
   { type: 'video' as const, src: '/example.mp4', alt: 'Видео съемки станков' },
@@ -14,40 +14,46 @@ const machinePhotos = [
   { type: 'image' as const, src: '/machine/8.png', alt: 'Станок крупным планом' },
 ]
 
-const whereItems = [
+const defaultWhereItems = [
   {
-    icon: '/svgicons/photos/post.svg',
-    title: 'Рекламные<br />материалы',
+    icon: '/svgicons/photos/presentation.svg',
+    title: 'Коммерческое<br />продвижение',
     description:
-      'Буклеты, каталоги — качественные изображения станков. Баннеры и постеры — для выставок или презентаций. Социальные сети — имиджевые фото для постов.',
+      'Презентации для клиентов и\u00A0партнеров. Видеоролики и\u00A0фото для рассылок и\u00A0коммерческих предложений. Визуальные материалы для участия в\u00A0тендерах.',
   },
   {
-    icon: '/svgicons/photos/sell.svg',
-    title: 'Продажи<br />и каталогизация',
+    icon: '/svgicons/photos/documentation.svg',
+    title: 'Внутренние<br />корпоративные цели',
     description:
-      'Интернет-каталог на сайте — фото оборудования. Прайс-листы и коммерческие предложения. Маркетплейсы и онлайн-площадки.',
+      'Обучающие материалы для сотрудников (инструкции, демонстрация работы станков). Документация по\u00A0эксплуатации и\u00A0техобслуживанию. Визуальное сопровождение внутренних отчетов и\u00A0презентаций.',
   },
   {
     icon: '/svgicons/photos/search.svg',
-    title: 'Техническая<br />документация',
+    title: 'Сайт и\u00A0цифровые<br />платформы',
     description:
-      'Инструкции по эксплуатации — пошаговые фото деталей. Сервисные мануалы — крупные планы узлов. Сертификационные документы.',
+      'Галереи и\u00A0карточки товаров на\u00A0корпоративном сайте. Видеообзоры для разделов «Продукция» и\u00A0«Оборудование». Встраивание фото и\u00A0видео в\u00A0онлайн-каталоги, маркетплейсы, порталы о\u00A0промышленности.',
   },
   {
-    icon: '/svgicons/photos/partners.svg',
-    title: 'B2B и партнёры',
+    icon: '/svgicons/photos/archive.svg',
+    title: 'Рекламные и\u00A0маркетинговые<br />материалы',
     description:
-      'Презентации для клиентов — детализированные фото оборудования. Инвесторы и дистрибьюторы — показ ассортимента.',
+      'Буклеты, каталоги, прайс-листы с\u00A0иллюстрациями станков. Баннеры и\u00A0постеры для выставок, презентаций и\u00A0отраслевых мероприятий. Имиджевые и\u00A0информационные публикации в\u00A0социальных сетях. Рекламные ролики для ТВ\u00A0или онлайн-площадок.',
   },
   {
-    icon: '/svgicons/photos/photo.svg',
-    title: 'PR и выставки',
+    icon: '/svgicons/photos/beenhere.svg',
+    title: 'PR\u00A0и\u00A0имиджевые цели',
     description:
-      'Стенды на выставках — большие фото станков. Видео-ролики с анимацией. Пресс-релизы — изображения нового оборудования.',
+      'Публикации в\u00A0отраслевых СМИ и\u00A0профильных изданиях. Использование в\u00A0пресс-релизах, интервью, отчетах для инвесторов. Формирование визуального образа современного и\u00A0технологичного производства.',
   },
 ]
 
-export default function MachinePage() {
+export default async function MachinePage() {
+  const cmsData = await getPhotoPage('machine')
+
+  if (cmsData) {
+    return <PhotoPageTemplate data={cmsData} variant="machine" />
+  }
+
   return (
     <main>
       <PageHero
@@ -57,7 +63,7 @@ export default function MachinePage() {
         heroImageAlt="Съёмка станков и промышленного оборудования"
       />
 
-      <PhotosGrid photos={machinePhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="object" />
 
       <Cycle
         number="3"
@@ -68,7 +74,7 @@ export default function MachinePage() {
         imageAlt="Мощность в деталях - съёмка станков"
       />
 
-      <WhereUsed title="где это используется?" items={whereItems} />
+      <WhereUsed title="где это используется?" items={defaultWhereItems} />
 
       <Contact />
     </main>

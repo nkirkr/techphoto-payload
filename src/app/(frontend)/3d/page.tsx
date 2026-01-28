@@ -1,42 +1,48 @@
-'use client'
-
-import { PageHero, WhereUsed } from '@/components/PhotoPages'
+import { getPhotoPage } from '@/utilities/getPhotoPage'
+import { PhotoPageTemplate } from '@/components/PhotoPages'
+import { PageHero, WhereUsed, Cycle } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
-const whereItems = [
-  {
-    icon: '/svgicons/photos/portal.svg',
-    title: 'Интернет-магазины<br />и каталоги',
-    description:
-      '3D-просмотр товаров — интерактивное вращение на 360°. Детализация продукции — зум на любую часть. Повышение конверсии продаж.',
-  },
+const defaultWhereItems = [
   {
     icon: '/svgicons/photos/presentation.svg',
-    title: 'Презентации<br />и демо',
+    title: 'Презентации<br />и маркетинг',
     description:
-      'Интерактивные презентации оборудования. Виртуальные демонстрации для клиентов. Обучающие материалы.',
+      '3D-съёмка и рендеры позволяют эффектно представить промышленное оборудование без необходимости его физического присутствия. Реалистичные визуализации используются в каталогах, на сайтах, в рекламных видео и презентациях. Они наглядно демонстрируют конструкцию, функционал и преимущества станков, помогая компании выделиться на рынке и упростить коммуникацию с клиентом.',
   },
   {
     icon: '/svgicons/photos/documentation.svg',
-    title: 'Техническая<br />документация',
+    title: 'Техническая<br />документация и обучение',
     description:
-      '3D-инструкции по сборке и эксплуатации. Визуализация внутренних компонентов. Анимированные руководства.',
+      'Интерактивные инструкции и мануалы — вместо статичных схем используются 3D-модели, демонстрирующие сборку, замену узлов или настройку.<br />Обучающие видео и AR-материалы — обучение операторов и инженеров без доступа к реальному оборудованию.',
   },
   {
-    icon: '/svgicons/photos/sell.svg',
-    title: 'Маркетинг<br />и реклама',
+    icon: '/svgicons/photos/portal.svg',
+    title: 'Продажи и клиентские<br />демонстрации',
     description:
-      'Видеоролики с 3D-анимацией. Рекламные материалы с интерактивом. AR/VR опыт для клиентов.',
+      '3D-каталоги и конфигураторы — клиент может рассмотреть станок под любым углом, выбрать комплектацию или цвет. Визуализация работы оборудования — особенно полезна для сложных или дорогих машин, которые невозможно транспортировать на встречу.',
   },
   {
-    icon: '/svgicons/photos/photo.svg',
-    title: 'Выставки<br />и мероприятия',
+    icon: '/svgicons/photos/archive.svg',
+    title: 'Архивирование<br />и цифровизация',
     description:
-      'Интерактивные стенды с 3D-моделями. Виртуальные туры по производству. Демонстрация прототипов.',
+      'Создание цифрового двойника предприятия — фиксируется текущее состояние цехов, станков и коммуникаций.<br />Учёт оборудования — точные 3D-копии помогают при инвентаризации<br />и планировании модернизации.',
+  },
+  {
+    icon: '/svgicons/photos/beenhere.svg',
+    title: 'Инвестиционные<br />и проектные презентации',
+    description:
+      'Демонстрация проектов инвесторам <br />и партнёрам — визуализация будущего завода, модернизации или новой линии значительно повышает доверие <br />и наглядность.',
   },
 ]
 
-export default function ThreeDPage() {
+export default async function ThreeDPage() {
+  const cmsData = await getPhotoPage('3d')
+
+  if (cmsData) {
+    return <PhotoPageTemplate data={cmsData} variant="3d" />
+  }
+
   return (
     <main>
       <PageHero
@@ -52,7 +58,16 @@ export default function ThreeDPage() {
         </div>
       </div>
 
-      <WhereUsed title="где это используется?" items={whereItems} />
+      <WhereUsed title="где это используется?" items={defaultWhereItems} />
+
+      <Cycle
+        number="3"
+        leftText="Полный цикл"
+        rightText="Полный"
+        overlayText="акцент на важном"
+        image="/3d/cycle.png"
+        imageAlt="Акцент на важном - 3D"
+      />
 
       <Contact />
     </main>

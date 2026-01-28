@@ -1,9 +1,9 @@
-'use client'
-
+import { getPhotoPage } from '@/utilities/getPhotoPage'
+import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
-const macroPhotos = [
+const defaultPhotos = [
   { type: 'image' as const, src: '/macro/1.png', alt: 'Макросъемка деталей' },
   { type: 'image' as const, src: '/macro/2.png', alt: 'Крупный план изделия' },
   { type: 'image' as const, src: '/macro/3.png', alt: 'Макро фотография' },
@@ -14,40 +14,35 @@ const macroPhotos = [
   { type: 'image' as const, src: '/macro/8.png', alt: 'Макро изделия' },
 ]
 
-const whereItems = [
+const defaultWhereItems = [
   {
-    icon: '/svgicons/photos/post.svg',
-    title: 'Рекламные<br />материалы',
+    icon: '/svgicons/photos/tick.svg',
+    title: 'Рекламные<br />и\u00A0презентационные<br />материалы',
     description:
-      'Буклеты, каталоги — детализированные изображения. Баннеры и постеры — для выставок. Социальные сети — впечатляющие макро-фото.',
+      'Каталоги и\u00A0буклеты — акцент на\u00A0точности обработки, высоком качестве металла, деталях конструкции. Постеры и\u00A0баннеры для выставок, где необходимо показать конкурентные преимущества станков. Видео с\u00A0акцентом на\u00A0технологические особенности (острота режущего инструмента, качество поверхности после обработки).',
   },
   {
-    icon: '/svgicons/photos/documentation.svg',
-    title: 'Техническая<br />документация',
+    icon: '/svgicons/photos/beenhere.svg',
+    iconOrange: true,
+    title: 'Цифровые каналы',
     description:
-      'Инструкции — детальные фото компонентов. Сервисные мануалы — крупные планы узлов. Сертификационные документы.',
+      'На\u00A0сайте — в\u00A0карточках товаров, чтобы показать качество сборки, материалов и\u00A0обработки. В\u00A0социальных сетях — эффектные макро-кадры для привлечения внимания к\u00A0бренду. Для онлайн-каталогов и\u00A0маркетплейсов — подтверждение качества продукции.',
   },
   {
-    icon: '/svgicons/photos/search.svg',
-    title: 'Контроль<br />качества',
+    icon: '/svgicons/photos/smile.svg',
+    title: 'Имидж и\u00A0PR',
     description:
-      'Фиксация дефектов и особенностей. Документирование производственного процесса. Создание эталонных образцов.',
-  },
-  {
-    icon: '/svgicons/photos/partners.svg',
-    title: 'B2B и партнёры',
-    description:
-      'Презентации — показ качества материалов. Демонстрация технологий обработки. Сравнительные материалы.',
-  },
-  {
-    icon: '/svgicons/photos/photo.svg',
-    title: 'Научные<br />публикации',
-    description:
-      'Исследовательские материалы. Технические статьи. Патентная документация.',
+      'В\u00A0пресс-релизах и\u00A0отраслевых публикациях как доказательство современного технологического уровня. В\u00A0отчетах для инвесторов и\u00A0партнеров. В\u00A0корпоративных видеороликах, где акцент делается на\u00A0высокоточном оборудовании.',
   },
 ]
 
-export default function MacroPage() {
+export default async function MacroPage() {
+  const cmsData = await getPhotoPage('macro')
+
+  if (cmsData) {
+    return <PhotoPageTemplate data={cmsData} variant="macro" />
+  }
+
   return (
     <main>
       <PageHero
@@ -57,9 +52,9 @@ export default function MacroPage() {
         heroImageAlt="Макросъёмка деталей и компонентов"
       />
 
-      <PhotosGrid photos={macroPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="object" />
 
-      <WhereUsed title="где это используется?" items={whereItems} />
+      <WhereUsed title="где это используется?" items={defaultWhereItems} variant="three" />
 
       <Contact />
     </main>

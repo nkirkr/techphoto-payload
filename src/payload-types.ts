@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    'photo-pages': PhotoPage;
     posts: Post;
     media: Media;
     categories: Category;
@@ -90,6 +91,7 @@ export interface Config {
   };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    'photo-pages': PhotoPagesSelect<false> | PhotoPagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -781,6 +783,58 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "photo-pages".
+ */
+export interface PhotoPage {
+  id: number;
+  title: string;
+  heroTitle: string;
+  heroDescription: string;
+  heroImage: number | Media;
+  photos?:
+    | {
+        type?: ('image' | 'video') | null;
+        image?: (number | null) | Media;
+        video?: string | null;
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  showCycle?: boolean | null;
+  cycleNumber?: string | null;
+  cycleLeftText?: string | null;
+  cycleRightText?: string | null;
+  cycleOverlayText?: string | null;
+  cycleImage?: (number | null) | Media;
+  whereTitle?: string | null;
+  whereItems?:
+    | {
+        icon?: (number | null) | Media;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -972,6 +1026,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'photo-pages';
+        value: number | PhotoPage;
       } | null)
     | ({
         relationTo: 'posts';
@@ -1185,6 +1243,53 @@ export interface FormBlockSelect<T extends boolean = true> {
   introContent?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "photo-pages_select".
+ */
+export interface PhotoPagesSelect<T extends boolean = true> {
+  title?: T;
+  heroTitle?: T;
+  heroDescription?: T;
+  heroImage?: T;
+  photos?:
+    | T
+    | {
+        type?: T;
+        image?: T;
+        video?: T;
+        alt?: T;
+        id?: T;
+      };
+  showCycle?: T;
+  cycleNumber?: T;
+  cycleLeftText?: T;
+  cycleRightText?: T;
+  cycleOverlayText?: T;
+  cycleImage?: T;
+  whereTitle?: T;
+  whereItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1745,6 +1850,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'pages';
           value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'photo-pages';
+          value: number | PhotoPage;
         } | null)
       | ({
           relationTo: 'posts';
