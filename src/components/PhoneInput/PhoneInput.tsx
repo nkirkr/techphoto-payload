@@ -59,16 +59,18 @@ export const PhoneInput = forwardRef<PhoneInputRef, PhoneInputProps>(
         const input = inputRef.current
 
         // Инициализируем intl-tel-input
-        itiRef.current = intlTelInput(input, {
+        const options = {
           initialCountry: 'ru',
           countryOrder: ['ru', 'kz', 'by', 'ua'],
           separateDialCode: true,
-          formatOnDisplay: false, // Отключаем, т.к. используем IMask
+          formatOnDisplay: false,
           nationalMode: true,
           countrySearch: true,
           autoPlaceholder: 'polite',
           loadUtilsOnInit: () => import('intl-tel-input/utils'),
-        })
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        itiRef.current = intlTelInput(input, options as any)
 
         // Получаем начальную страну
         const countryCode = itiRef.current.getSelectedCountryData()?.iso2?.toLowerCase() || 'ru'
