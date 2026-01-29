@@ -61,7 +61,7 @@ export const PhoneInput = forwardRef<PhoneInputRef, PhoneInputProps>(
         // Инициализируем intl-tel-input
         itiRef.current = intlTelInput(input, {
           initialCountry: 'ru',
-          preferredCountries: ['ru', 'kz', 'by', 'ua'],
+          countryOrder: ['ru', 'kz', 'by', 'ua'],
           separateDialCode: true,
           formatOnDisplay: false, // Отключаем, т.к. используем IMask
           nationalMode: true,
