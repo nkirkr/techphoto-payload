@@ -28,9 +28,10 @@ export interface PhotoPageData {
   }>
 }
 
-function getMediaUrl(media: Media | string | null | undefined): string {
+function getMediaUrl(media: Media | number | string | null | undefined): string {
   if (!media) return ''
   if (typeof media === 'string') return media
+  if (typeof media === 'number') return '' // ID without populated data
   return media.url || ''
 }
 
