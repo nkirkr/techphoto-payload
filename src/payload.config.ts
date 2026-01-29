@@ -4,6 +4,7 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 import { ru } from '@payloadcms/translations/languages/ru'
+import { en } from '@payloadcms/translations/languages/en'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -21,9 +22,25 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  // Локализация контента (для хранения переводов в БД)
+  localization: {
+    locales: [
+      {
+        label: 'Русский',
+        code: 'ru',
+      },
+      {
+        label: 'English',
+        code: 'en',
+      },
+    ],
+    defaultLocale: 'ru',
+    fallback: true,
+  },
+  // Интернационализация админки
   i18n: {
     fallbackLanguage: 'ru',
-    supportedLanguages: { ru },
+    supportedLanguages: { ru, en },
   },
   admin: {
     components: {

@@ -2,6 +2,11 @@ import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
+import type { Locale } from '@/i18n/config'
+
+type Props = {
+  params: Promise<{ locale: Locale }>
+}
 
 const defaultPhotos = [
   { type: 'image' as const, src: '/machine/1.png', alt: 'Съемка станков' },
@@ -47,8 +52,9 @@ const defaultWhereItems = [
   },
 ]
 
-export default async function MachinePage() {
-  const cmsData = await getPhotoPage('machine')
+export default async function MachinePage({ params }: Props) {
+  const { locale } = await params
+  const cmsData = await getPhotoPage('machine', locale)
 
   if (cmsData) {
     return <PhotoPageTemplate data={cmsData} variant="machine" />

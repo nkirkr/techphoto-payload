@@ -3,13 +3,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { type Locale, locales, localeLabels } from '@/i18n/config'
 
 interface NavLink {
-  label: string
+  label: Record<Locale, string>
   href: string
 }
 
 interface HeaderProps {
+  locale?: Locale
   logoLight?: string
   logoDark?: string
   navLinks?: NavLink[]
@@ -19,22 +22,23 @@ interface HeaderProps {
 }
 
 const defaultNavLinks: NavLink[] = [
-  { label: 'главная', href: '/' },
-  { label: 'портфолио', href: '/#portfolio' },
-  { label: 'написать нам', href: '/#contact' },
+  { label: { ru: 'главная', en: 'home' }, href: '/' },
+  { label: { ru: 'портфолио', en: 'portfolio' }, href: '/#portfolio' },
+  { label: { ru: 'написать нам', en: 'contact us' }, href: '/#contact' },
 ]
 
 const defaultMobileNavLinks: NavLink[] = [
-  { label: 'главная', href: '/' },
-  { label: 'предметная съемка', href: '/object' },
-  { label: 'станки', href: '/machine' },
-  { label: 'макро', href: '/macro' },
-  { label: 'персонал', href: '/portraits' },
-  { label: '3D', href: '/3d' },
-  { label: 'контакты', href: '/#contact' },
+  { label: { ru: 'главная', en: 'home' }, href: '/' },
+  { label: { ru: 'предметная съемка', en: 'product photo' }, href: '/object' },
+  { label: { ru: 'станки', en: 'machines' }, href: '/machine' },
+  { label: { ru: 'макро', en: 'macro' }, href: '/macro' },
+  { label: { ru: 'персонал', en: 'staff' }, href: '/portraits' },
+  { label: { ru: '3D', en: '3D' }, href: '/3d' },
+  { label: { ru: 'контакты', en: 'contacts' }, href: '/#contact' },
 ]
 
 export const Header: React.FC<HeaderProps> = ({
+  locale = 'ru',
   logoLight = '/logo-white.svg',
   logoDark = '/logo-black.svg',
   navLinks = defaultNavLinks,
@@ -43,6 +47,8 @@ export const Header: React.FC<HeaderProps> = ({
   whatsappUrl = '#',
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -54,15 +60,63 @@ export const Header: React.FC<HeaderProps> = ({
     document.body.classList.remove('menu-open')
   }
 
+  const switchLocale = (newLocale: Locale) => {
+    // Получаем чистый путь без локали
+    let cleanPath = pathname
+    if (pathname.startsWith('/en/')) {
+      cleanPath = pathname.replace('/en', '')
+    } else if (pathname === '/en') {
+      cleanPath = '/'
+    }
+    // Для /ru путей (не должно быть, но на всякий случай)
+    if (pathname.startsWith('/ru/')) {
+      cleanPath = pathname.replace('/ru', '')
+    } else if (pathname === '/ru') {
+      cleanPath = '/'
+    }
+    
+    // Формируем новый путь
+    let newPath: string
+    if (newLocale === 'ru') {
+      newPath = cleanPath // Русский без префикса
+    } else {
+      newPath = `/en${cleanPath}` // Английский с /en
+    }
+    
+    // Сохраняем выбор в cookie
+    document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000`
+    
+    router.push(newPath)
+  }
+
+  const otherLocale = locale === 'ru' ? 'en' : 'ru'
+
+  // Добавляем локаль к ссылкам
+  // Русский - без префикса, английский - с /en
+  const getLocalizedHref = (href: string) => {
+    if (locale === 'ru') {
+      return href // Русский без префикса
+    }
+    // Английский с /en
+    if (href === '/') {
+      return '/en'
+    }
+    return `/en${href}`
+  }
+
   return (
     <>
       <header className="header">
         <div className="container header__content">
           <div className="header__left">
-            <button type="button" className="header__lang-mobile" data-lang="eng">
-              eng
+            <button
+              type="button"
+              className="header__lang-mobile"
+              onClick={() => switchLocale(otherLocale)}
+            >
+              {localeLabels[otherLocale]}
             </button>
-            <Link href="/" className="header__logo" onClick={closeMenu}>
+            <Link href={getLocalizedHref('/')} className="header__logo" onClick={closeMenu}>
               <Image
                 src={logoDark}
                 alt="Техфото"
@@ -81,18 +135,22 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <nav className="header__nav nav">
             {navLinks.map((link, index) => (
-              <Link key={index} href={link.href} className="nav__link">
-                {link.label}
+              <Link key={index} href={getLocalizedHref(link.href)} className="nav__link">
+                {link.label[locale]}
               </Link>
             ))}
-            <button type="button" className="nav__link nav__lang" data-lang="eng">
-              eng
+            <button
+              type="button"
+              className="nav__link nav__lang"
+              onClick={() => switchLocale(otherLocale)}
+            >
+              {localeLabels[otherLocale]}
             </button>
           </nav>
           <button
             className="header__burger"
             type="button"
-            aria-label="Открыть меню"
+            aria-label={locale === 'ru' ? 'Открыть меню' : 'Open menu'}
             onClick={toggleMenu}
           >
             <span></span>
@@ -108,11 +166,11 @@ export const Header: React.FC<HeaderProps> = ({
           {mobileNavLinks.map((link, index) => (
             <Link
               key={index}
-              href={link.href}
+              href={getLocalizedHref(link.href)}
               className={`mobile-menu__link ${link.href === '/' ? 'active' : ''}`}
               onClick={closeMenu}
             >
-              {link.label}
+              {link.label[locale]}
             </Link>
           ))}
         </nav>

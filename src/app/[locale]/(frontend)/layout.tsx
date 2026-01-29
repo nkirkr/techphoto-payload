@@ -12,16 +12,27 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { locales, type Locale } from '@/i18n/config'
 
 import './globals.css'
 import '@/styles/main.scss'
 import { getServerSideURL } from '@/utilities/getURL'
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+  params: Promise<{ locale: Locale }>
+}
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await params
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="ru" suppressHydrationWarning>
+    <html className={cn(GeistSans.variable, GeistMono.variable)} lang={locale} suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
@@ -35,7 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
 
-          <Header />
+          <Header locale={locale} />
           {children}
           <Footer />
         </Providers>

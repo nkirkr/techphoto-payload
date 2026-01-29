@@ -2,6 +2,11 @@ import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, WhereUsed, Cycle } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
+import type { Locale } from '@/i18n/config'
+
+type Props = {
+  params: Promise<{ locale: Locale }>
+}
 
 const defaultWhereItems = [
   {
@@ -36,8 +41,9 @@ const defaultWhereItems = [
   },
 ]
 
-export default async function ThreeDPage() {
-  const cmsData = await getPhotoPage('3d')
+export default async function ThreeDPage({ params }: Props) {
+  const { locale } = await params
+  const cmsData = await getPhotoPage('3d', locale)
 
   if (cmsData) {
     return <PhotoPageTemplate data={cmsData} variant="3d" />

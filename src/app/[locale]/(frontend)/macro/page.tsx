@@ -2,6 +2,11 @@ import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
+import type { Locale } from '@/i18n/config'
+
+type Props = {
+  params: Promise<{ locale: Locale }>
+}
 
 const defaultPhotos = [
   { type: 'image' as const, src: '/macro/1.png', alt: 'Макросъемка деталей' },
@@ -36,8 +41,9 @@ const defaultWhereItems = [
   },
 ]
 
-export default async function MacroPage() {
-  const cmsData = await getPhotoPage('macro')
+export default async function MacroPage({ params }: Props) {
+  const { locale } = await params
+  const cmsData = await getPhotoPage('macro', locale)
 
   if (cmsData) {
     return <PhotoPageTemplate data={cmsData} variant="macro" />

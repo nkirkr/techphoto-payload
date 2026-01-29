@@ -2,6 +2,11 @@ import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
+import type { Locale } from '@/i18n/config'
+
+type Props = {
+  params: Promise<{ locale: Locale }>
+}
 
 const defaultPhotos = [
   { type: 'image' as const, src: '/portrait/1.png', alt: 'Портрет сотрудника' },
@@ -35,8 +40,9 @@ const defaultWhereItems = [
   },
 ]
 
-export default async function PortraitsPage() {
-  const cmsData = await getPhotoPage('portraits')
+export default async function PortraitsPage({ params }: Props) {
+  const { locale } = await params
+  const cmsData = await getPhotoPage('portraits', locale)
 
   if (cmsData) {
     return <PhotoPageTemplate data={cmsData} variant="portrait" />

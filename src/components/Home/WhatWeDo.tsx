@@ -130,9 +130,9 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({
 
       <div className="container">
         <div className="what-we-do__features">
-          {features.map((feature, index) => (
-            <div key={index}>
-              <div className="what-we-do__feature">
+          {features.flatMap((feature, index) => {
+            const elements = [
+              <div className="what-we-do__feature" key={`feature-${index}`}>
                 <h3 className="what-we-do__feature-title">
                   {feature.title.split(' ').map((word, i) => (
                     <span key={i}>
@@ -143,18 +143,22 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({
                   ))}
                 </h3>
                 <p className="what-we-do__feature-text">{feature.text}</p>
-              </div>
-              {index < features.length - 1 && (
+              </div>,
+            ]
+            if (index < features.length - 1) {
+              elements.push(
                 <Image
+                  key={`divider-${index}`}
                   src="/svgicons/home/line.svg"
                   alt=""
                   className="what-we-do__divider"
                   width={190}
                   height={1}
-                />
-              )}
-            </div>
-          ))}
+                />,
+              )
+            }
+            return elements
+          })}
         </div>
       </div>
     </section>

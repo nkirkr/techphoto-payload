@@ -1,6 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { PhotoPage, Media } from '@/payload-types'
+import type { Locale } from '@/i18n/config'
 
 export interface PhotoPageData {
   title: string
@@ -33,11 +34,12 @@ function getMediaUrl(media: Media | string | null | undefined): string {
   return media.url || ''
 }
 
-export async function getPhotoPage(slug: string): Promise<PhotoPageData | null> {
+export async function getPhotoPage(slug: string, locale: Locale = 'ru'): Promise<PhotoPageData | null> {
   const payload = await getPayload({ config })
 
   const result = await payload.find({
     collection: 'photo-pages',
+    locale,
     where: {
       slug: {
         equals: slug,

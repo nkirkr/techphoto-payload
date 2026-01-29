@@ -156,7 +156,7 @@ export const Contact: React.FC<ContactProps> = ({
             <button type="submit" className="request__submit">
               <span>оставить заявку</span>
               <span className="request__submit-circle">
-                <Image src="/svgicons/all/arrow-hero.svg" alt="" width={37} height={37} />
+                <Image src="/svgicons/all/arrow-request.svg" alt="" width={37} height={37} />
               </span>
             </button>
           </form>

@@ -46,6 +46,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
       label: 'Название страницы',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       type: 'tabs',
@@ -59,12 +60,14 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               label: 'Заголовок',
               type: 'text',
               required: true,
+              localized: true,
             },
             {
               name: 'heroDescription',
               label: 'Описание',
               type: 'textarea',
               required: true,
+              localized: true,
             },
             {
               name: 'heroImage',
@@ -117,6 +120,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
                   name: 'alt',
                   label: 'Alt текст',
                   type: 'text',
+                  localized: true,
                 },
               ],
             },
@@ -146,6 +150,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               label: 'Текст слева',
               type: 'text',
               defaultValue: 'Полный цикл',
+              localized: true,
               admin: {
                 condition: (data) => data?.showCycle,
               },
@@ -155,6 +160,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               label: 'Текст справа',
               type: 'text',
               defaultValue: 'Полный',
+              localized: true,
               admin: {
                 condition: (data) => data?.showCycle,
               },
@@ -163,6 +169,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               name: 'cycleOverlayText',
               label: 'Текст на изображении',
               type: 'text',
+              localized: true,
               admin: {
                 condition: (data) => data?.showCycle,
               },
@@ -187,6 +194,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               label: 'Заголовок секции',
               type: 'text',
               defaultValue: 'где это используется?',
+              localized: true,
             },
             {
               name: 'whereItems',
@@ -194,6 +202,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               type: 'array',
               minRows: 1,
               maxRows: 6,
+              localized: true,
               fields: [
                 {
                   name: 'icon',
