@@ -52,3 +52,7 @@ pnpm-debug.log*
 
 # Misc
 *.pem
+
+# Database backups
+*.dump
+data_backup.sql
