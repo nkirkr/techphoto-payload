@@ -114,10 +114,14 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'home-page': HomePage;
+    contacts: Contact;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
   };
   locale: 'ru' | 'en';
   user: User & {
@@ -1794,6 +1798,79 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page".
+ */
+export interface HomePage {
+  id: number;
+  heroSubtitle?: string | null;
+  heroText?: string | null;
+  heroButtonText?: string | null;
+  heroPortfolioButtonText?: string | null;
+  heroBackgroundImage?: (number | null) | Media;
+  whatWeDoText?: string | null;
+  whatWeDoButtonText?: string | null;
+  whatWeDoSectionTitle?: string | null;
+  portfolioCards?:
+    | {
+        title: string;
+        href: string;
+        backgroundImage?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  detailsText?: string | null;
+  detailsBackgroundImage?: (number | null) | Media;
+  stepsSubtitle?: string | null;
+  stepsTitle?: string | null;
+  steps?:
+    | {
+        number: string;
+        title: string;
+        text: string;
+        isHighlighted?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: number;
+  title?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  telegramUrl?: string | null;
+  whatsappUrl?: string | null;
+  privacyPolicyUrl?: string | null;
+  formNamePlaceholder?: string | null;
+  formEmailPlaceholder?: string | null;
+  formPhonePlaceholder?: string | null;
+  formSubmitButtonText?: string | null;
+  formAgreementText?: string | null;
+  privacyPolicyLinkText?: string | null;
+  /**
+   * Requests from the site will be sent to this email
+   */
+  destinationEmail?: string | null;
+  modalTitle?: string | null;
+  modalSubtitle?: string | null;
+  modalSubmitButtonText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -1834,6 +1911,76 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  heroSubtitle?: T;
+  heroText?: T;
+  heroButtonText?: T;
+  heroPortfolioButtonText?: T;
+  heroBackgroundImage?: T;
+  whatWeDoText?: T;
+  whatWeDoButtonText?: T;
+  whatWeDoSectionTitle?: T;
+  portfolioCards?:
+    | T
+    | {
+        title?: T;
+        href?: T;
+        backgroundImage?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  detailsText?: T;
+  detailsBackgroundImage?: T;
+  stepsSubtitle?: T;
+  stepsTitle?: T;
+  steps?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        text?: T;
+        isHighlighted?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  title?: T;
+  phone?: T;
+  email?: T;
+  telegramUrl?: T;
+  whatsappUrl?: T;
+  privacyPolicyUrl?: T;
+  formNamePlaceholder?: T;
+  formEmailPlaceholder?: T;
+  formPhonePlaceholder?: T;
+  formSubmitButtonText?: T;
+  formAgreementText?: T;
+  privacyPolicyLinkText?: T;
+  destinationEmail?: T;
+  modalTitle?: T;
+  modalSubtitle?: T;
+  modalSubmitButtonText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

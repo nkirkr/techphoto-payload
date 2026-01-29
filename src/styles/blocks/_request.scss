@@ -197,6 +197,65 @@
 
 	&__field {
 		position: relative;
+
+		// intl-tel-input styles
+		.iti {
+			width: 100%;
+			display: block;
+			position: relative;
+			--iti-hover-color: transparent;
+
+			.iti__flag-container {
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				padding: 0;
+				display: flex;
+				align-items: center;
+			}
+
+			.iti__selected-flag {
+				padding: 0;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				background-color: transparent !important;
+				border: none;
+				outline: none;
+
+				&:hover,
+				&:focus {
+					background-color: transparent !important;
+					outline: none;
+				}
+			}
+
+			.iti__arrow {
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				border-top: 5px solid var(--dark-80);
+				margin-left: 6px;
+			}
+
+			.iti__arrow--up {
+				border-top: none;
+				border-bottom: 5px solid var(--dark-80);
+			}
+
+			.iti__selected-dial-code {
+				font-family: var(--font-family);
+				font-weight: 500;
+				font-size: 18px;
+				line-height: 140%;
+				text-transform: uppercase;
+				color: var(--dark-80);
+			}
+		}
+
+		input[type='tel'] {
+			padding-left: 90px;
+		}
 	}
 
 	&__input {
@@ -378,5 +437,23 @@
 				height: 16px;
 			}
 		}
+	}
+
+	&__success {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #4caf50;
+		margin-bottom: 10px;
+	}
+
+	&__error {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #d32f2f;
+		margin-bottom: 10px;
 	}
 }

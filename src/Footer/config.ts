@@ -5,8 +5,18 @@ import { revalidateFooter } from './hooks/revalidateFooter'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  label: {
+    ru: 'Подвал сайта',
+    en: 'Footer',
+  },
   access: {
     read: () => true,
+  },
+  admin: {
+    group: {
+      ru: 'Настройки сайта',
+      en: 'Site Settings',
+    },
   },
   fields: [
     {

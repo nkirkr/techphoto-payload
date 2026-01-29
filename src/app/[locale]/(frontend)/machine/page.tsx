@@ -1,7 +1,6 @@
 import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
-import { Contact } from '@/components/Home'
 import type { Locale } from '@/i18n/config'
 
 type Props = {
@@ -81,8 +80,6 @@ export default async function MachinePage({ params }: Props) {
       />
 
       <WhereUsed title="где это используется?" items={defaultWhereItems} />
-
-      <Contact />
     </main>
   )
 }

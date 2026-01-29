@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useModal } from '@/components/RequestModal'
 
 interface HeroProps {
   logo?: string
@@ -22,6 +23,8 @@ export const Hero: React.FC<HeroProps> = ({
   backgroundImage = '/home/hero.png',
   backgroundImageMobile = '/home/hero-mob.png',
 }) => {
+  const { openModal } = useModal()
+
   return (
     <section
       className="hero"
@@ -40,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
         <div className="hero__bottom">
           <p className="hero__text">{text}</p>
-          <button className="hero__btn" type="button">
+          <button className="hero__btn" type="button" onClick={openModal}>
             <span>{buttonText}</span>
             <span className="hero__btn-circle">
               <Image src="/svgicons/all/arrow-hero.svg" alt="Arrow" width={20} height={20} />

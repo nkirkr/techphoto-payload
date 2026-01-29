@@ -20,6 +20,15 @@ body {
 	}
 }
 
+.iti {
+	width: 100%;
+	.request__input {
+		padding-bottom: 0;
+	}
+	&__country-container, &__tel-input {
+		padding-bottom: 12px;
+	}
+}
 img {
 	display: block;
 }

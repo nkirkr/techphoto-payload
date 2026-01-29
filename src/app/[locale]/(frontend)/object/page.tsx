@@ -1,7 +1,6 @@
 import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
-import { Contact } from '@/components/Home'
 import type { Locale } from '@/i18n/config'
 
 type Props = {
@@ -71,6 +70,9 @@ export default async function ObjectPage({ params }: Props) {
 
       <PhotosGrid photos={defaultPhotos} variant="object" />
 
+
+      <WhereUsed title="где это используется?" items={defaultWhereItems} />
+
       <Cycle
         number="3"
         leftText="Полный цикл"
@@ -79,10 +81,6 @@ export default async function ObjectPage({ params }: Props) {
         image="/object/cycle.png"
         imageAlt="Акцент на важном - предметная съёмка"
       />
-
-      <WhereUsed title="где это используется?" items={defaultWhereItems} />
-
-      <Contact />
     </main>
   )
 }

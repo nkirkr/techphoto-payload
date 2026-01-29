@@ -1,7 +1,6 @@
 'use client'
 
 import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
-import { Contact } from '@/components/Home'
 import type { PhotoPageData } from '@/utilities/getPhotoPage'
 
 interface PhotoPageTemplateProps {
@@ -31,7 +30,6 @@ export const PhotoPageTemplate: React.FC<PhotoPageTemplateProps> = ({
       )}
       
       {data.showCycle && data.cycleImage && (
-        
         <Cycle
           number={data.cycleNumber}
           leftText={data.cycleLeftText}
@@ -40,8 +38,6 @@ export const PhotoPageTemplate: React.FC<PhotoPageTemplateProps> = ({
           image={data.cycleImage}
         />
       )}
-
-      <Contact />
     </main>
   )
 }

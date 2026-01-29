@@ -106,9 +106,9 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      <header className="header">
+      <header className={`header ${isMenuOpen ? 'menu-open' : ''}`}>
         <div className="container header__content">
-          <div className="header__left">
+          <div className={`header__left ${isMenuOpen ? 'menu-open' : ''}`}>
             <button
               type="button"
               className="header__lang-mobile"
@@ -120,14 +120,14 @@ export const Header: React.FC<HeaderProps> = ({
               <Image
                 src={logoDark}
                 alt="Техфото"
-                className="header__logo-dark"
+                className={`header__logo-dark ${isMenuOpen ? 'menu-open' : ''}`}
                 width={180}
                 height={20}
               />
               <Image
                 src={logoLight}
                 alt="Техфото"
-                className="header__logo-light"
+                className={`header__logo-light ${isMenuOpen ? 'menu-open' : ''}`}
                 width={180}
                 height={20}
               />
@@ -148,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </nav>
           <button
-            className="header__burger"
+            className={`header__burger ${isMenuOpen ? 'menu-open' : ''}`}
             type="button"
             aria-label={locale === 'ru' ? 'Открыть меню' : 'Open menu'}
             onClick={toggleMenu}
@@ -160,14 +160,17 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
 
-      <div className="mobile-menu-overlay" onClick={closeMenu}></div>
-      <div className="mobile-menu">
+      <div 
+        className={`mobile-menu-overlay ${isMenuOpen ? 'is-open' : ''}`} 
+        onClick={closeMenu}
+      ></div>
+      <div className={`mobile-menu ${isMenuOpen ? 'is-open' : ''}`}>
         <nav className="mobile-menu__nav">
           {mobileNavLinks.map((link, index) => (
             <Link
               key={index}
               href={getLocalizedHref(link.href)}
-              className={`mobile-menu__link ${link.href === '/' ? 'active' : ''}`}
+              className={`mobile-menu__link ${pathname === getLocalizedHref(link.href) ? 'active' : ''}`}
               onClick={closeMenu}
             >
               {link.label[locale]}

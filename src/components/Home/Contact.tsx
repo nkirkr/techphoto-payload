@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { PhoneInput, PhoneInputRef } from '@/components/PhoneInput'
 
 interface ContactProps {
   title?: string
@@ -10,6 +11,12 @@ interface ContactProps {
   telegramUrl?: string
   whatsappUrl?: string
   privacyPolicyUrl?: string
+  formNamePlaceholder?: string
+  formEmailPlaceholder?: string
+  formPhonePlaceholder?: string
+  formSubmitButtonText?: string
+  formAgreementText?: string
+  privacyPolicyLinkText?: string
 }
 
 export const Contact: React.FC<ContactProps> = ({
@@ -19,18 +26,53 @@ export const Contact: React.FC<ContactProps> = ({
   telegramUrl = '#',
   whatsappUrl = '#',
   privacyPolicyUrl = 'https://x-potok.net/policy',
+  formNamePlaceholder = 'имя',
+  formEmailPlaceholder = 'email',
+  formPhonePlaceholder = 'тел',
+  formSubmitButtonText = 'оставить заявку',
+  formAgreementText = 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
+  privacyPolicyLinkText = 'политикой конфиденциальности',
 }) => {
+  const phoneInputRef = useRef<PhoneInputRef>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     agreement: false,
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          source: 'contact-form',
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', phone: '', agreement: false })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +81,7 @@ export const Contact: React.FC<ContactProps> = ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }))
+    setSubmitStatus('idle')
   }
 
   return (
@@ -93,7 +136,7 @@ export const Contact: React.FC<ContactProps> = ({
                 type="text"
                 className="request__input"
                 name="name"
-                placeholder="имя"
+                placeholder={formNamePlaceholder}
                 required
                 value={formData.name}
                 onChange={handleChange}
@@ -105,7 +148,7 @@ export const Contact: React.FC<ContactProps> = ({
                 type="email"
                 className="request__input"
                 name="email"
-                placeholder="email"
+                placeholder={formEmailPlaceholder}
                 required
                 value={formData.email}
                 onChange={handleChange}
@@ -113,14 +156,17 @@ export const Contact: React.FC<ContactProps> = ({
             </div>
 
             <div className="request__field">
-              <input
-                type="tel"
+              <PhoneInput
+                ref={phoneInputRef}
                 className="request__input"
                 name="phone"
-                placeholder="тел"
+                placeholder={formPhonePlaceholder}
                 required
                 value={formData.phone}
-                onChange={handleChange}
+                onChange={(phone) => {
+                  setFormData((prev) => ({ ...prev, phone }))
+                  setSubmitStatus('idle')
+                }}
               />
             </div>
 
@@ -136,25 +182,29 @@ export const Contact: React.FC<ContactProps> = ({
                 />
                 <span className="request__checkbox-box"></span>
                 <span className="request__checkbox-text">
-                  Нажимая на кнопку, вы даете согласие на обработку
-                  <br />
-                  своих персональных данных и соглашаетесь
-                  <br />с{' '}
+                  {formAgreementText}{' '}
                   <a
                     href={privacyPolicyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="request__checkbox-link"
                   >
-                    политикой конфиденциальности
+                    {privacyPolicyLinkText}
                   </a>
                   .
                 </span>
               </label>
             </div>
 
-            <button type="submit" className="request__submit">
-              <span>оставить заявку</span>
+            {submitStatus === 'success' && (
+              <p className="request__success">Спасибо! Ваша заявка отправлена.</p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="request__error">Произошла ошибка. Попробуйте позже.</p>
+            )}
+
+            <button type="submit" className="request__submit" disabled={isSubmitting}>
+              <span>{isSubmitting ? 'Отправка...' : formSubmitButtonText}</span>
               <span className="request__submit-circle">
                 <Image src="/svgicons/all/arrow-request.svg" alt="" width={37} height={37} />
               </span>

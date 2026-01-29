@@ -8,11 +8,14 @@ import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
 import { Header } from '@/components/Layout/Header'
 import { Footer } from '@/components/Layout/Footer'
+import { Contact } from '@/components/Home/Contact'
+import { ModalProvider, RequestModal } from '@/components/RequestModal'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 import { locales, type Locale } from '@/i18n/config'
+import { getContacts } from '@/utilities/getContacts'
 
 import './globals.css'
 import '@/styles/main.scss'
@@ -30,6 +33,7 @@ export function generateStaticParams() {
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
   const { isEnabled } = await draftMode()
+  const contacts = await getContacts(locale)
 
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang={locale} suppressHydrationWarning>
@@ -40,15 +44,41 @@ export default async function RootLayout({ children, params }: Props) {
       </head>
       <body>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+          <ModalProvider>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
 
-          <Header locale={locale} />
-          {children}
-          <Footer />
+            <Header locale={locale} />
+            {children}
+            <Contact
+              title={contacts.title}
+              phone={contacts.phone}
+              email={contacts.email}
+              telegramUrl={contacts.telegramUrl}
+              whatsappUrl={contacts.whatsappUrl}
+              privacyPolicyUrl={contacts.privacyPolicyUrl}
+              formNamePlaceholder={contacts.formNamePlaceholder}
+              formEmailPlaceholder={contacts.formEmailPlaceholder}
+              formPhonePlaceholder={contacts.formPhonePlaceholder}
+              formSubmitButtonText={contacts.formSubmitButtonText}
+              formAgreementText={contacts.formAgreementText}
+              privacyPolicyLinkText={contacts.privacyPolicyLinkText}
+            />
+            <Footer />
+            <RequestModal
+              title={contacts.modalTitle}
+              subtitle={contacts.modalSubtitle}
+              namePlaceholder={contacts.formNamePlaceholder}
+              phonePlaceholder={contacts.formPhonePlaceholder}
+              emailPlaceholder={contacts.formEmailPlaceholder}
+              submitButtonText={contacts.modalSubmitButtonText}
+              privacyPolicyUrl={contacts.privacyPolicyUrl}
+              privacyPolicyLinkText={contacts.privacyPolicyLinkText}
+            />
+          </ModalProvider>
         </Providers>
       </body>
     </html>

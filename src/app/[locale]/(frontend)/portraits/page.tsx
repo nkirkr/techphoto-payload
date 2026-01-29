@@ -1,7 +1,6 @@
 import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
-import { Contact } from '@/components/Home'
 import type { Locale } from '@/i18n/config'
 
 type Props = {
@@ -60,8 +59,6 @@ export default async function PortraitsPage({ params }: Props) {
       <PhotosGrid photos={defaultPhotos} variant="object" />
 
       <WhereUsed title="где это используется?" items={defaultWhereItems} variant="three" />
-
-      <Contact />
     </main>
   )
 }

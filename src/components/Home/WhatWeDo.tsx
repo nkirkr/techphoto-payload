@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useModal } from '@/components/RequestModal'
 
 interface Card {
   title: string
@@ -74,6 +75,8 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({
   cards = defaultCards,
   features = defaultFeatures,
 }) => {
+  const { openModal } = useModal()
+
   return (
     <section className="what-we-do" id="portfolio">
       <div className="container">
@@ -87,7 +90,7 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({
               height={36}
             />
             <p className="what-we-do__text">{text}</p>
-            <button className="what-we-do__btn" type="button">
+            <button className="what-we-do__btn" type="button" onClick={openModal}>
               <span>{buttonText}</span>
               <span className="what-we-do__btn-circle">
                 <Image src="/svgicons/all/arrow-hero.svg" alt="Arrow" width={20} height={20} />
@@ -134,13 +137,7 @@ export const WhatWeDo: React.FC<WhatWeDoProps> = ({
             const elements = [
               <div className="what-we-do__feature" key={`feature-${index}`}>
                 <h3 className="what-we-do__feature-title">
-                  {feature.title.split(' ').map((word, i) => (
-                    <span key={i}>
-                      {word}
-                      {i === 0 && <br className="desktop-br" />}
-                      {i !== 0 && ' '}
-                    </span>
-                  ))}
+                  {feature.title}
                 </h3>
                 <p className="what-we-do__feature-text">{feature.text}</p>
               </div>,

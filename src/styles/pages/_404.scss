@@ -1,0 +1,109 @@
+.error-page {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  background-color: var(--white-100);
+
+  @include tablet {
+    padding: 60px 0;
+  }
+
+  @include mobile {
+    padding: 40px 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__digit {
+    font-family: var(--second-family);
+    font-weight: 700;
+    font-size: 300px;
+    line-height: 1.106;
+    text-transform: uppercase;
+    color: var(--dark-100);
+
+    @include tablet {
+      font-size: 200px;
+    }
+
+    @include mobile {
+      font-size: 125px;
+    }
+  }
+
+  &__image {
+    width: 200px;
+    height: 249px;
+    object-fit: contain;
+
+    @include tablet {
+      width: 150px;
+      height: auto;
+    }
+
+    @include mobile {
+      width: 80px;
+      height: auto;
+    }
+  }
+
+  &__message {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.219;
+    text-align: center;
+    color: var(--dark-100);
+    max-width: 336px;
+
+    @include mobile {
+      font-size: 16px;
+      max-width: 280px;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: var(--orange-light);
+    border-radius: 50px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--white-100);
+    text-decoration: none;
+    transition: all .3s ease;
+
+    &:hover {
+      background-color: var(--orange-dark);
+    }
+
+    &:active {
+      background-color: var(--orange-dark);
+    }
+
+    @include mobile {
+      font-size: 16px;
+      padding: 12px 30px;
+    }
+  }
+}

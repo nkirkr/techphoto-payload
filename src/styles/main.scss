@@ -10,6 +10,7 @@
 @import './blocks/footer';
 @import './blocks/mobile-menu';
 @import './blocks/request';
+@import './blocks/modal';
 
 /* Pages - Home */
 @import './pages/home/hero';
@@ -22,3 +23,6 @@
 @import './pages/photos-pages/photos';
 @import './pages/photos-pages/where';
 @import './pages/photos-pages/cycle';
+
+/* Pages - 404 */
+@import './pages/404';

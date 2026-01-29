@@ -1,7 +1,6 @@
 import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
 import { PageHero, WhereUsed, Cycle } from '@/components/PhotoPages'
-import { Contact } from '@/components/Home'
 import type { Locale } from '@/i18n/config'
 
 type Props = {
@@ -74,8 +73,6 @@ export default async function ThreeDPage({ params }: Props) {
         image="/3d/cycle.png"
         imageAlt="Акцент на важном - 3D"
       />
-
-      <Contact />
     </main>
   )
 }

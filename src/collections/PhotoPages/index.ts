@@ -38,7 +38,10 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     useAsTitle: 'title',
-    group: 'Контент',
+    group: {
+      ru: 'Контент',
+      en: 'Content',
+    },
   },
   fields: [
     {
