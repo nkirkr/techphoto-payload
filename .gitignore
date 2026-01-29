@@ -55,4 +55,8 @@ pnpm-debug.log*
 
 # Database backups
 *.dump
+*.sql
 data_backup.sql
+data_backup_inserts.sql
+full_backup.sql
+schema_only.sql
