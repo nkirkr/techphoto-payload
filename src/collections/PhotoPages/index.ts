@@ -180,11 +180,21 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
             },
             {
               name: 'cycleImage',
-              label: 'Изображение',
+              label: 'Изображение (десктоп)',
               type: 'upload',
               relationTo: 'media',
               admin: {
                 condition: (data) => data?.showCycle,
+              },
+            },
+            {
+              name: 'cycleImageMobile',
+              label: 'Изображение (мобильная версия)',
+              type: 'upload',
+              relationTo: 'media',
+              admin: {
+                condition: (data) => data?.showCycle,
+                description: 'Изображение для мобильных устройств',
               },
             },
           ],

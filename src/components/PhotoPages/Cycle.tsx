@@ -39,14 +39,19 @@ export const Cycle: React.FC<CycleProps> = ({
       </div>
 
       <div className="cycle__image-container">
-        <Image
-          src={image}
-          alt={imageAlt}
-          className="cycle__image-object"
-          width={1440}
-          height={451}
-          loading="lazy"
-        />
+        <picture>
+          {imageMobile && (
+            <source media="(max-width: 768px)" srcSet={imageMobile} />
+          )}
+          <Image
+            src={image}
+            alt={imageAlt}
+            className="cycle__image-object"
+            width={1440}
+            height={451}
+            loading="lazy"
+          />
+        </picture>
 
         {overlayText && (
           <div className="cycle__overlay">

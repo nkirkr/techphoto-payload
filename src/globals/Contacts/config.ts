@@ -58,15 +58,6 @@ export const Contacts: GlobalConfig = {
       defaultValue: '#',
     },
     {
-      name: 'privacyPolicyUrl',
-      label: {
-        ru: 'Ссылка на политику конфиденциальности',
-        en: 'Privacy Policy URL',
-      },
-      type: 'text',
-      defaultValue: 'https://x-potok.net/policy',
-    },
-    {
       name: 'formNamePlaceholder',
       label: {
         ru: 'Плейсхолдер поля "Имя"',
@@ -104,27 +95,6 @@ export const Contacts: GlobalConfig = {
       },
       type: 'text',
       defaultValue: 'оставить заявку',
-      localized: true,
-    },
-    {
-      name: 'formAgreementText',
-      label: {
-        ru: 'Текст согласия',
-        en: 'Agreement text',
-      },
-      type: 'textarea',
-      defaultValue:
-        'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
-      localized: true,
-    },
-    {
-      name: 'privacyPolicyLinkText',
-      label: {
-        ru: 'Текст ссылки на политику',
-        en: 'Privacy policy link text',
-      },
-      type: 'text',
-      defaultValue: 'политикой конфиденциальности',
       localized: true,
     },
     {

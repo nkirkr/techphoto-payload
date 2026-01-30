@@ -116,12 +116,14 @@ export interface Config {
     footer: Footer;
     'home-page': HomePage;
     contacts: Contact;
+    documents: Document;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
     contacts: ContactsSelect<false> | ContactsSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
   };
   locale: 'ru' | 'en';
   user: User & {
@@ -810,6 +812,10 @@ export interface PhotoPage {
   cycleRightText?: string | null;
   cycleOverlayText?: string | null;
   cycleImage?: (number | null) | Media;
+  /**
+   * Изображение для мобильных устройств
+   */
+  cycleImageMobile?: (number | null) | Media;
   whereTitle?: string | null;
   whereItems?:
     | {
@@ -1272,6 +1278,7 @@ export interface PhotoPagesSelect<T extends boolean = true> {
   cycleRightText?: T;
   cycleOverlayText?: T;
   cycleImage?: T;
+  cycleImageMobile?: T;
   whereTitle?: T;
   whereItems?:
     | T
@@ -1852,13 +1859,10 @@ export interface Contact {
   email?: string | null;
   telegramUrl?: string | null;
   whatsappUrl?: string | null;
-  privacyPolicyUrl?: string | null;
   formNamePlaceholder?: string | null;
   formEmailPlaceholder?: string | null;
   formPhonePlaceholder?: string | null;
   formSubmitButtonText?: string | null;
-  formAgreementText?: string | null;
-  privacyPolicyLinkText?: string | null;
   /**
    * Requests from the site will be sent to this email
    */
@@ -1866,6 +1870,23 @@ export interface Contact {
   modalTitle?: string | null;
   modalSubtitle?: string | null;
   modalSubmitButtonText?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  privacyPolicy?: {
+    title?: string | null;
+    url?: string | null;
+  };
+  termsOfService?: {
+    title?: string | null;
+    url?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1970,17 +1991,35 @@ export interface ContactsSelect<T extends boolean = true> {
   email?: T;
   telegramUrl?: T;
   whatsappUrl?: T;
-  privacyPolicyUrl?: T;
   formNamePlaceholder?: T;
   formEmailPlaceholder?: T;
   formPhonePlaceholder?: T;
   formSubmitButtonText?: T;
-  formAgreementText?: T;
-  privacyPolicyLinkText?: T;
   destinationEmail?: T;
   modalTitle?: T;
   modalSubtitle?: T;
   modalSubmitButtonText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  privacyPolicy?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+      };
+  termsOfService?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

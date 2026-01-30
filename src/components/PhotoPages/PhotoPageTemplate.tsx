@@ -36,6 +36,7 @@ export const PhotoPageTemplate: React.FC<PhotoPageTemplateProps> = ({
           rightText={data.cycleRightText}
           overlayText={data.cycleOverlayText}
           image={data.cycleImage}
+          imageMobile={data.cycleImageMobile}
         />
       )}
     </main>

@@ -16,6 +16,7 @@ import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 import { locales, type Locale } from '@/i18n/config'
 import { getContacts } from '@/utilities/getContacts'
+import { getDocuments } from '@/utilities/getDocuments'
 
 import './globals.css'
 import '@/styles/main.scss'
@@ -34,6 +35,7 @@ export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
   const { isEnabled } = await draftMode()
   const contacts = await getContacts(locale)
+  const documents = await getDocuments(locale)
 
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang={locale} suppressHydrationWarning>
@@ -59,15 +61,21 @@ export default async function RootLayout({ children, params }: Props) {
               email={contacts.email}
               telegramUrl={contacts.telegramUrl}
               whatsappUrl={contacts.whatsappUrl}
-              privacyPolicyUrl={contacts.privacyPolicyUrl}
+              privacyPolicyUrl={documents.privacyPolicy.url}
               formNamePlaceholder={contacts.formNamePlaceholder}
               formEmailPlaceholder={contacts.formEmailPlaceholder}
               formPhonePlaceholder={contacts.formPhonePlaceholder}
               formSubmitButtonText={contacts.formSubmitButtonText}
-              formAgreementText={contacts.formAgreementText}
-              privacyPolicyLinkText={contacts.privacyPolicyLinkText}
+              privacyPolicyLinkText={documents.privacyPolicy.title}
             />
-            <Footer />
+            <Footer 
+              phone={contacts.phone}
+              email={contacts.email}
+              docLinks={[
+                { label: documents.privacyPolicy.title, href: documents.privacyPolicy.url },
+                { label: documents.termsOfService.title, href: documents.termsOfService.url },
+              ]}
+            />
             <RequestModal
               title={contacts.modalTitle}
               subtitle={contacts.modalSubtitle}
@@ -75,8 +83,8 @@ export default async function RootLayout({ children, params }: Props) {
               phonePlaceholder={contacts.formPhonePlaceholder}
               emailPlaceholder={contacts.formEmailPlaceholder}
               submitButtonText={contacts.modalSubmitButtonText}
-              privacyPolicyUrl={contacts.privacyPolicyUrl}
-              privacyPolicyLinkText={contacts.privacyPolicyLinkText}
+              privacyPolicyUrl={documents.privacyPolicy.url}
+              privacyPolicyLinkText={documents.privacyPolicy.title}
             />
           </ModalProvider>
         </Providers>

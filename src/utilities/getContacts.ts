@@ -8,13 +8,10 @@ export interface ContactsData {
   email: string
   telegramUrl: string
   whatsappUrl: string
-  privacyPolicyUrl: string
   formNamePlaceholder: string
   formEmailPlaceholder: string
   formPhonePlaceholder: string
   formSubmitButtonText: string
-  formAgreementText: string
-  privacyPolicyLinkText: string
   destinationEmail: string
   modalTitle: string
   modalSubtitle: string
@@ -36,15 +33,10 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       email: contacts.email || 'tehphoto@mail.ru',
       telegramUrl: contacts.telegramUrl || '#',
       whatsappUrl: contacts.whatsappUrl || '#',
-      privacyPolicyUrl: contacts.privacyPolicyUrl || 'https://x-potok.net/policy',
       formNamePlaceholder: contacts.formNamePlaceholder || 'имя',
       formEmailPlaceholder: contacts.formEmailPlaceholder || 'email',
       formPhonePlaceholder: contacts.formPhonePlaceholder || 'тел',
       formSubmitButtonText: contacts.formSubmitButtonText || 'оставить заявку',
-      formAgreementText:
-        contacts.formAgreementText ||
-        'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
-      privacyPolicyLinkText: contacts.privacyPolicyLinkText || 'политикой конфиденциальности',
       destinationEmail: contacts.destinationEmail || 'tehphoto@mail.ru',
       modalTitle: contacts.modalTitle || 'оставьте заявку',
       modalSubtitle: contacts.modalSubtitle || 'мы свяжемся с вами в ближайшее время',
@@ -58,14 +50,10 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       email: 'tehphoto@mail.ru',
       telegramUrl: '#',
       whatsappUrl: '#',
-      privacyPolicyUrl: 'https://x-potok.net/policy',
       formNamePlaceholder: 'имя',
       formEmailPlaceholder: 'email',
       formPhonePlaceholder: 'тел',
       formSubmitButtonText: 'оставить заявку',
-      formAgreementText:
-        'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
-      privacyPolicyLinkText: 'политикой конфиденциальности',
       destinationEmail: 'tehphoto@mail.ru',
       modalTitle: 'оставьте заявку',
       modalSubtitle: 'мы свяжемся с вами в ближайшее время',

@@ -84,9 +84,9 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="footer__list">
               {docLinks.map((link, index) => (
                 <li key={index} className="footer__item">
-                  <Link href={link.href} className="footer__link">
+                  <a href={link.href} className="footer__link" target="_blank" rel="noopener noreferrer">
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

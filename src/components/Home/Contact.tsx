@@ -15,7 +15,6 @@ interface ContactProps {
   formEmailPlaceholder?: string
   formPhonePlaceholder?: string
   formSubmitButtonText?: string
-  formAgreementText?: string
   privacyPolicyLinkText?: string
 }
 
@@ -30,7 +29,6 @@ export const Contact: React.FC<ContactProps> = ({
   formEmailPlaceholder = 'email',
   formPhonePlaceholder = 'тел',
   formSubmitButtonText = 'оставить заявку',
-  formAgreementText = 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
   privacyPolicyLinkText = 'политикой конфиденциальности',
 }) => {
   const phoneInputRef = useRef<PhoneInputRef>(null)
@@ -182,7 +180,7 @@ export const Contact: React.FC<ContactProps> = ({
                 />
                 <span className="request__checkbox-box"></span>
                 <span className="request__checkbox-text">
-                  {formAgreementText}{' '}
+                  Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с{' '}
                   <a
                     href={privacyPolicyUrl}
                     target="_blank"
