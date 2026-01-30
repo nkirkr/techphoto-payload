@@ -24,7 +24,9 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [])
 
   if (resource && typeof resource === 'object') {
-    const { filename } = resource
+    const { filename, url } = resource
+    // Use url if available (Vercel Blob), otherwise fallback to local path
+    const videoSrc = url || getMediaUrl(`/media/${filename}`)
 
     return (
       <video
@@ -37,7 +39,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={getMediaUrl(`/media/${filename}`)} />
+        <source src={videoSrc} />
       </video>
     )
   }

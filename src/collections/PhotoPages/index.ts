@@ -113,8 +113,9 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
                 },
                 {
                   name: 'video',
-                  label: 'Видео URL',
-                  type: 'text',
+                  label: 'Видео',
+                  type: 'upload',
+                  relationTo: 'media',
                   admin: {
                     condition: (data, siblingData) => siblingData?.type === 'video',
                   },

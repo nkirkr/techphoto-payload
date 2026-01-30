@@ -799,7 +799,7 @@ export interface PhotoPage {
     | {
         type?: ('image' | 'video') | null;
         image?: (number | null) | Media;
-        video?: string | null;
+        video?: (number | null) | Media;
         alt?: string | null;
         id?: string | null;
       }[]

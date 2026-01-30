@@ -66,7 +66,7 @@ export async function getPhotoPage(slug: string, locale: Locale = 'ru'): Promise
     heroImageAlt: (page.heroImage as Media)?.alt || page.heroTitle,
     photos: (page.photos || []).map((photo) => ({
       type: photo.type || 'image',
-      src: photo.type === 'video' ? (photo.video || '') : getMediaUrl(photo.image),
+      src: photo.type === 'video' ? getMediaUrl(photo.video) : getMediaUrl(photo.image),
       alt: photo.alt || '',
     })),
     showCycle: page.showCycle || false,
