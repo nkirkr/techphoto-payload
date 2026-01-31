@@ -14,21 +14,36 @@ export interface DocumentsData {
 }
 
 export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData> {
-  const payload = await getPayload({ config })
+  try {
+    const payload = await getPayload({ config })
 
-  const documents = await payload.findGlobal({
-    slug: 'documents',
-    locale,
-  })
+    const documents = await payload.findGlobal({
+      slug: 'documents',
+      locale,
+    })
 
-  return {
-    privacyPolicy: {
-      title: documents.privacyPolicy?.title || 'политика конфиденциальности',
-      url: documents.privacyPolicy?.url || '#',
-    },
-    termsOfService: {
-      title: documents.termsOfService?.title || 'пользовательское соглашение',
-      url: documents.termsOfService?.url || '#',
-    },
+    return {
+      privacyPolicy: {
+        title: documents.privacyPolicy?.title || 'политика конфиденциальности',
+        url: documents.privacyPolicy?.url || '#',
+      },
+      termsOfService: {
+        title: documents.termsOfService?.title || 'пользовательское соглашение',
+        url: documents.termsOfService?.url || '#',
+      },
+    }
+  } catch (error) {
+    // Return default values if database is not available during build
+    console.warn('Failed to fetch documents from database, using defaults:', error)
+    return {
+      privacyPolicy: {
+        title: 'политика конфиденциальности',
+        url: '#',
+      },
+      termsOfService: {
+        title: 'пользовательское соглашение',
+        url: '#',
+      },
+    }
   }
 }
