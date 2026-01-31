@@ -56,7 +56,7 @@ export default async function PortraitsPage({ params }: Props) {
         heroImageAlt="Корпоративная съёмка персонала"
       />
 
-      <PhotosGrid photos={defaultPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="portrait" />
 
       <WhereUsed title="где это используется?" items={defaultWhereItems} variant="three" />
     </main>

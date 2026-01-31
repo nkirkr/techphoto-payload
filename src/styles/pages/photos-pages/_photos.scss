@@ -154,3 +154,509 @@
 		}
 	}
 }
+
+// Machine page specific
+.photos--machine {
+	.photos__item {
+		&--1 {
+			width: 18.4%;
+
+			@include tablet {
+				width: 58.8%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 176px;
+			}
+		}
+
+		&--2 {
+			width: 33.4%;
+
+			@include tablet {
+				width: 39.8%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--3 {
+			width: 15.8%;
+
+			@include tablet {
+				width: 43%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--4 {
+			width: 30%;
+
+			@include tablet {
+				width: 26.5%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--5 {
+			width: 41.6% !important;
+
+			@include tablet {
+				width: 26% !important;
+			}
+
+			@include mobile {
+				width: 49% !important;
+				height: 262px;
+			}
+		}
+
+		&--6 {
+			width: 18.4%;
+
+			@include tablet {
+				width: 26.4%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--7 {
+			width: 38.3%;
+
+			@include tablet {
+				width: 32%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--8 {
+			width: 32.9%;
+
+			@include tablet {
+				width: 39%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--9 {
+			width: 33%;
+
+			@include tablet {
+				width: 48%;
+			}
+
+			@include mobile {
+				display: none;
+			}
+		}
+
+		&--10 {
+			width: 32.4%;
+
+			@include tablet {
+				width: 48%;
+			}
+
+			@include mobile {
+				display: none;
+			}
+		}
+	}
+}
+
+// Macro page specific
+.photos--macro {
+	.photos__item {
+		&--1 {
+			width: 30.8%;
+
+			@include tablet {
+				width: 58.5%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--2 {
+			width: 16.25%;
+
+			@include tablet {
+				width: 39.5%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--3 {
+			width: 30.8%;
+
+			@include tablet {
+				width: 42.4%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--4 {
+			width: 17%;
+
+			@include tablet {
+				width: 25.4%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--5 {
+			width: 30.8%;
+
+			@include tablet {
+				width: 25.2%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--6 {
+			width: 30.8%;
+
+			@include tablet {
+				width: 25.2%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--7 {
+			width: 17%;
+
+			@include tablet {
+				width: 30.5%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--8 {
+			width: 16.2%;
+
+			@include tablet {
+				width: 39%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--9 {
+			width: 32.4%;
+
+			@include tablet {
+				width: 31.2%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--10 {
+			width: 32%;
+
+			@include tablet {
+				width: 31.2%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--11 {
+			width: 31.2%;
+
+			@include tablet {
+				width: 31.2%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+	}
+}
+
+// Portraits page specific
+.photos--portrait,
+.photos--portraits {
+	.photos__item {
+		// Портретные (узкие) изображения
+		&--portrait {
+			width: calc((100vw - 40px) * 0.15 - 8.8px);
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&:nth-child(1) {
+			@include tablet {
+				width: 56%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&:nth-child(2) {
+			@include tablet {
+				width: 37.89%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&:nth-child(3) {
+			@include tablet {
+				width: 42.21%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--video {
+			width: calc((100vw - 40px) * 0.3664 - 8.8px);
+
+			@include tablet {
+				width: 25.42%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&:nth-child(5) {
+			width: calc((100vw - 40px) * 0.1493 - 8.8px);
+
+			@include tablet {
+				width: 25.18%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--video-wide {
+			width: calc((100vw - 40px) * 0.3293 - 7.33px);
+		}
+
+		&:nth-child(6) {
+			@include tablet {
+				width: 25.42%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&:nth-child(7) {
+			@include tablet {
+				width: 30.46%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--landscape {
+			width: calc((100vw - 40px) * 0.3279 - 7.33px);
+		}
+
+		&:nth-child(8) {
+			@include tablet {
+				width: 37.17%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+	}
+}
+
+// 3D page specific (используем сетку как у object)
+.photos--3d {
+	.photos__item {
+		&--1 {
+			width: 33.4%;
+
+			@include tablet {
+				width: 58.8%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--2 {
+			width: 15.2%;
+
+			@include tablet {
+				width: 39.8%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--3 {
+			width: 33.9%;
+
+			@include tablet {
+				width: 44.3%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--4 {
+			width: 15.1%;
+
+			@include tablet {
+				width: 26.7%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--5 {
+			width: 15%;
+
+			@include tablet {
+				width: 26.4%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 262px;
+			}
+		}
+
+		&--6 {
+			width: 15%;
+
+			@include tablet {
+				width: 26.4%;
+			}
+
+			@include mobile {
+				width: 100%;
+				height: 240px;
+			}
+		}
+
+		&--7 {
+			width: 29.9%;
+
+			@include tablet {
+				width: 32%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+
+		&--8 {
+			width: 37.6%;
+
+			@include tablet {
+				width: 39%;
+			}
+
+			@include mobile {
+				width: 49%;
+				height: 130px;
+			}
+		}
+	}
+}

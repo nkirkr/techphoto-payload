@@ -57,7 +57,7 @@ export default async function MacroPage({ params }: Props) {
         heroImageAlt="Макросъёмка деталей и компонентов"
       />
 
-      <PhotosGrid photos={defaultPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="macro" />
 
       <WhereUsed title="где это используется?" items={defaultWhereItems} variant="three" />
     </main>

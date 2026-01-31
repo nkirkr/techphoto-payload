@@ -68,7 +68,7 @@ export default async function MachinePage({ params }: Props) {
         heroImageAlt="Съёмка станков и промышленного оборудования"
       />
 
-      <PhotosGrid photos={defaultPhotos} variant="object" />
+      <PhotosGrid photos={defaultPhotos} variant="machine" />
 
       <Cycle
         number="3"
