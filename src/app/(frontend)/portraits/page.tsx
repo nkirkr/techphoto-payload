@@ -4,14 +4,14 @@ import { PageHero, PhotosGrid, WhereUsed } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
 const defaultPhotos = [
-  { type: 'image' as const, src: '/portrait/1.png', alt: 'Портрет сотрудника' },
-  { type: 'image' as const, src: '/portrait/2.png', alt: 'Корпоративная фотосъемка' },
-  { type: 'image' as const, src: '/portrait/3.png', alt: 'Бизнес-портрет' },
-  { type: 'image' as const, src: '/portrait/4.png', alt: 'Фото персонала' },
-  { type: 'image' as const, src: '/portrait/5.png', alt: 'Съемка команды' },
-  { type: 'image' as const, src: '/portrait/6.png', alt: 'Профессиональный портрет' },
-  { type: 'image' as const, src: '/portrait/7.png', alt: 'Портрет специалиста' },
-  { type: 'image' as const, src: '/portrait/8.png', alt: 'Корпоративное фото' },
+  { type: 'image' as const, src: '/portrait/1.png', alt: 'Портрет сотрудника', layoutClass: 'portrait' as const },
+  { type: 'image' as const, src: '/portrait/2.png', alt: 'Корпоративная фотосъемка', layoutClass: 'portrait' as const },
+  { type: 'image' as const, src: '/portrait/3.png', alt: 'Бизнес-портрет', layoutClass: 'portrait' as const },
+  { type: 'video' as const, src: '/example.mp4', alt: 'Видео портретной съемки', layoutClass: 'video' as const },
+  { type: 'image' as const, src: '/portrait/5.png', alt: 'Съемка команды', layoutClass: 'portrait' as const },
+  { type: 'video' as const, src: '/example.mp4', alt: 'Видео производственной съемки', layoutClass: 'video-wide' as const },
+  { type: 'image' as const, src: '/portrait/7.png', alt: 'Портрет специалиста', layoutClass: 'landscape' as const },
+  { type: 'video' as const, src: '/example.mp4', alt: 'Видео рабочего процесса', layoutClass: 'video-wide' as const },
 ]
 
 const defaultWhereItems = [

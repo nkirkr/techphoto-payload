@@ -444,24 +444,6 @@
 		&--portrait {
 			width: calc((100vw - 40px) * 0.15 - 8.8px);
 
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&:nth-child(1) {
-			@include tablet {
-				width: 56%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&:nth-child(2) {
 			@include tablet {
 				width: 37.89%;
 			}
@@ -470,19 +452,16 @@
 				width: 49%;
 				height: 262px;
 			}
-		}
 
-		&:nth-child(3) {
-			@include tablet {
-				width: 42.21%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
+			// Первый портрет шире на планшете
+			&:nth-child(1) {
+				@include tablet {
+					width: 56%;
+				}
 			}
 		}
 
+		// Видео (первое в ряду)
 		&--video {
 			width: calc((100vw - 40px) * 0.3664 - 8.8px);
 
@@ -496,26 +475,12 @@
 			}
 		}
 
-		&:nth-child(5) {
-			width: calc((100vw - 40px) * 0.1493 - 8.8px);
-
-			@include tablet {
-				width: 25.18%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
+		// Широкое видео
 		&--video-wide {
 			width: calc((100vw - 40px) * 0.3293 - 7.33px);
-		}
 
-		&:nth-child(6) {
 			@include tablet {
-				width: 25.42%;
+				width: 30%;
 			}
 
 			@include mobile {
@@ -524,22 +489,10 @@
 			}
 		}
 
-		&:nth-child(7) {
-			@include tablet {
-				width: 30.46%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
+		// Горизонтальное (landscape) изображение
 		&--landscape {
 			width: calc((100vw - 40px) * 0.3279 - 7.33px);
-		}
 
-		&:nth-child(8) {
 			@include tablet {
 				width: 37.17%;
 			}
