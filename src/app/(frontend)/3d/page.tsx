@@ -1,6 +1,6 @@
 import { getPhotoPage } from '@/utilities/getPhotoPage'
 import { PhotoPageTemplate } from '@/components/PhotoPages'
-import { PageHero, WhereUsed, Cycle } from '@/components/PhotoPages'
+import { PageHero, WhereUsed, Cycle, ProductsSection } from '@/components/PhotoPages'
 import { Contact } from '@/components/Home'
 
 const defaultWhereItems = [
@@ -52,11 +52,7 @@ export default async function ThreeDPage() {
         heroImageAlt="3D визуализация оборудования"
       />
 
-      <div className="photo-page__3d-viewer">
-        <div className="container">
-          <div className="photo-page__3d-placeholder"></div>
-        </div>
-      </div>
+      <ProductsSection />
 
       <WhereUsed title="где это используется?" items={defaultWhereItems} />
 

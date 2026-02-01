@@ -1,6 +1,6 @@
 'use client'
 
-import { PageHero, PhotosGrid, WhereUsed, Cycle } from '@/components/PhotoPages'
+import { PageHero, PhotosGrid, WhereUsed, Cycle, ProductsSection } from '@/components/PhotoPages'
 import type { PhotoPageData } from '@/utilities/getPhotoPage'
 
 interface PhotoPageTemplateProps {
@@ -21,7 +21,11 @@ export const PhotoPageTemplate: React.FC<PhotoPageTemplateProps> = ({
         heroImageAlt={data.heroImageAlt}
       />
 
-      {data.photos && data.photos.length > 0 && (
+      {/* Products section для варианта 3d */}
+      {variant === '3d' && <ProductsSection />}
+
+      {/* PhotosGrid для остальных вариантов */}
+      {variant !== '3d' && data.photos && data.photos.length > 0 && (
         <PhotosGrid photos={data.photos} variant={variant} />
       )}
 
