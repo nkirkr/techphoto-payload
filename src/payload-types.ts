@@ -1912,11 +1912,25 @@ export interface Contact {
 export interface Document {
   id: number;
   privacyPolicy?: {
+    /**
+     * Used in footer and other places
+     */
     title?: string | null;
+    /**
+     * Used in agreement text: "...agree with [privacy policy]"
+     */
+    titleInstrumental?: string | null;
     url?: string | null;
   };
   termsOfService?: {
+    /**
+     * Used in footer
+     */
     title?: string | null;
+    /**
+     * Used in agreement text (if needed)
+     */
+    titleInstrumental?: string | null;
     url?: string | null;
   };
   updatedAt?: string | null;
@@ -2051,12 +2065,14 @@ export interface DocumentsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        titleInstrumental?: T;
         url?: T;
       };
   termsOfService?:
     | T
     | {
         title?: T;
+        titleInstrumental?: T;
         url?: T;
       };
   updatedAt?: T;

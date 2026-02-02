@@ -28,12 +28,34 @@ export const Documents: GlobalConfig = {
         {
           name: 'title',
           label: {
-            ru: 'Название ссылки',
-            en: 'Link title',
+            ru: 'Название (именительный падеж)',
+            en: 'Title (nominative)',
           },
           type: 'text',
           defaultValue: 'политика конфиденциальности',
           localized: true,
+          admin: {
+            description: {
+              ru: 'Используется в футере и других местах',
+              en: 'Used in footer and other places',
+            },
+          },
+        },
+        {
+          name: 'titleInstrumental',
+          label: {
+            ru: 'Название (творительный падеж)',
+            en: 'Title (instrumental)',
+          },
+          type: 'text',
+          defaultValue: 'политикой конфиденциальности',
+          localized: true,
+          admin: {
+            description: {
+              ru: 'Используется в тексте согласия: "...соглашаетесь с [политикой конфиденциальности]"',
+              en: 'Used in agreement text: "...agree with [privacy policy]"',
+            },
+          },
         },
         {
           name: 'url',
@@ -54,12 +76,34 @@ export const Documents: GlobalConfig = {
         {
           name: 'title',
           label: {
-            ru: 'Название ссылки',
-            en: 'Link title',
+            ru: 'Название (именительный падеж)',
+            en: 'Title (nominative)',
           },
           type: 'text',
           defaultValue: 'пользовательское соглашение',
           localized: true,
+          admin: {
+            description: {
+              ru: 'Используется в футере',
+              en: 'Used in footer',
+            },
+          },
+        },
+        {
+          name: 'titleInstrumental',
+          label: {
+            ru: 'Название (творительный падеж)',
+            en: 'Title (instrumental)',
+          },
+          type: 'text',
+          defaultValue: 'пользовательским соглашением',
+          localized: true,
+          admin: {
+            description: {
+              ru: 'Используется в тексте согласия (если потребуется)',
+              en: 'Used in agreement text (if needed)',
+            },
+          },
         },
         {
           name: 'url',

@@ -10,17 +10,20 @@
 	@media (min-width: 1025px) and (max-width: 1380px) {
 		background-size: 100% auto;
 		background-position: center;
+		background-image: var(--bg-desktop) !important;
 	}
 
 	@include tablet {
 		height: 440px;
 		background-size: cover;
 		background-position: right -100px center;
+		background-image: var(--bg-tablet) !important;
 	}
 
 	@include mobile {
 		height: 300px;
 		background-position: center;
+		background-image: var(--bg-mobile) !important;
 	}
 
 	&__content {

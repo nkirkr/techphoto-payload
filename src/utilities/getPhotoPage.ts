@@ -20,6 +20,7 @@ export interface PhotoPageData {
   cycleRightText?: string
   cycleOverlayText?: string
   cycleImage?: string
+  cycleImageTablet?: string
   cycleImageMobile?: string
   whereTitle: string
   whereItems: Array<{
@@ -77,6 +78,7 @@ export async function getPhotoPage(slug: string, locale: Locale = 'ru'): Promise
       cycleRightText: page.cycleRightText || 'Полный',
       cycleOverlayText: page.cycleOverlayText || '',
       cycleImage: getMediaUrl(page.cycleImage),
+      cycleImageTablet: getMediaUrl(page.cycleImageTablet),
       cycleImageMobile: getMediaUrl(page.cycleImageMobile),
       whereTitle: page.whereTitle || 'где это используется?',
       whereItems: (page.whereItems || []).map((item) => ({

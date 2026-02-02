@@ -82,9 +82,25 @@ export const RequestModal: React.FC<RequestModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
+    
+    // Валидация телефона
+    if (phoneInputRef.current && !phoneInputRef.current.isValidNumber()) {
+      // Показываем ошибку на поле телефона
+      const phoneInput = document.querySelector('.modal__input[name="phone"]') as HTMLInputElement
+      if (phoneInput) {
+        phoneInput.classList.add('error')
+        phoneInput.focus()
+      }
+      setError('Пожалуйста, введите корректный номер телефона')
+      return
+    }
+    
     setIsSubmitting(true)
 
     try {
+      // Получаем полный номер с кодом страны
+      const fullPhoneNumber = phoneInputRef.current?.getNumber() || formData.phone
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -92,7 +108,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
         },
         body: JSON.stringify({
           name: formData.name,
-          phone: formData.phone,
+          phone: fullPhoneNumber,
           email: formData.email,
           source: 'modal',
         }),
@@ -103,6 +119,13 @@ export const RequestModal: React.FC<RequestModalProps> = ({
       }
 
       setIsSuccess(true)
+      // Очищаем форму
+      setFormData({ name: '', phone: '', email: '', agreement: false })
+      const phoneInput = document.querySelector('.modal__input[name="phone"]') as HTMLInputElement
+      if (phoneInput) {
+        phoneInput.value = ''
+        phoneInput.classList.remove('error', 'valid')
+      }
     } catch (err) {
       setError('Произошла ошибка. Попробуйте позже.')
     } finally {

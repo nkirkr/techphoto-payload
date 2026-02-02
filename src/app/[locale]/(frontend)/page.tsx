@@ -81,6 +81,8 @@ export default async function HomePageComponent({ params }: Props) {
       <Details
         text={data?.detailsText}
         backgroundImage={data?.detailsBackgroundImage || '/home/camera.png'}
+        backgroundImageTablet={data?.detailsBackgroundImageTablet}
+        backgroundImageMobile={data?.detailsBackgroundImageMobile || '/object/camera-mob.png'}
       />
       <Steps
         subtitle={data?.stepsSubtitle}

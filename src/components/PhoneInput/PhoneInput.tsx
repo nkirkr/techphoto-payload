@@ -118,16 +118,30 @@ export const PhoneInput = forwardRef<PhoneInputRef, PhoneInputProps>(
 
         // Валидация при blur
         input.addEventListener('blur', () => {
-          if (input.value.trim() && input.value !== getMaskPattern(
-            itiRef.current?.getSelectedCountryData()?.iso2?.toLowerCase() || 'ru'
-          ).replace(/0/g, '_')) {
-            if (itiRef.current?.isValidNumber()) {
-              input.classList.remove('error')
-              input.classList.add('valid')
-            } else {
-              input.classList.add('error')
-              input.classList.remove('valid')
-            }
+          const trimmedValue = input.value.trim()
+          
+          // Не валидируем, если поле пустое
+          if (!trimmedValue) {
+            input.classList.remove('error', 'valid')
+            return
+          }
+          
+          // Проверяем, есть ли незаполненные символы маски (подчеркивания)
+          const hasUnfilledMask = trimmedValue.includes('_')
+          
+          // Если есть незаполненные символы, не валидируем (пользователь еще не закончил ввод)
+          if (hasUnfilledMask) {
+            input.classList.remove('error', 'valid')
+            return
+          }
+          
+          // Валидируем полный номер
+          if (itiRef.current?.isValidNumber()) {
+            input.classList.remove('error')
+            input.classList.add('valid')
+          } else {
+            input.classList.add('error')
+            input.classList.remove('valid')
           }
         })
 

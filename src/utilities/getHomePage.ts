@@ -28,6 +28,8 @@ export interface HomePageData {
   // Details
   detailsText: string
   detailsBackgroundImage?: string
+  detailsBackgroundImageTablet?: string
+  detailsBackgroundImageMobile?: string
 
   // Steps
   stepsSubtitle: string
@@ -90,6 +92,8 @@ export async function getHomePage(locale: Locale = 'ru'): Promise<HomePageData |
       // Details
       detailsText: (homePage as any).detailsText || 'детали, формирующие образ',
       detailsBackgroundImage: getMediaUrl((homePage as any).detailsBackgroundImage),
+      detailsBackgroundImageTablet: getMediaUrl((homePage as any).detailsBackgroundImageTablet),
+      detailsBackgroundImageMobile: getMediaUrl((homePage as any).detailsBackgroundImageMobile),
 
       // Steps
       stepsSubtitle: (homePage as any).stepsSubtitle || 'этапы работы',

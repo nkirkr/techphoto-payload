@@ -69,7 +69,7 @@ export default async function RootLayout({ children, params }: Props) {
               formPhonePlaceholder={contacts.formPhonePlaceholder}
               formSubmitButtonText={contacts.formSubmitButtonText}
               privacyPolicyText={contacts.privacyPolicyText}
-              privacyPolicyLinkText={documents.privacyPolicy.title}
+              privacyPolicyLinkText={documents.privacyPolicy.titleInstrumental}
             />
             <Footer 
               description={footer.description}
@@ -91,7 +91,7 @@ export default async function RootLayout({ children, params }: Props) {
               emailPlaceholder={contacts.formEmailPlaceholder}
               submitButtonText={contacts.modalSubmitButtonText}
               privacyPolicyUrl={documents.privacyPolicy.url}
-              privacyPolicyLinkText={documents.privacyPolicy.title}
+              privacyPolicyLinkText={documents.privacyPolicy.titleInstrumental}
             />
           </ModalProvider>
         </Providers>

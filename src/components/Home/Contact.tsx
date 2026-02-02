@@ -45,10 +45,25 @@ export const Contact: React.FC<ContactProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Валидация телефона
+    if (phoneInputRef.current && !phoneInputRef.current.isValidNumber()) {
+      // Показываем ошибку на поле телефона
+      const phoneInput = document.querySelector('input[name="phone"]') as HTMLInputElement
+      if (phoneInput) {
+        phoneInput.classList.add('error')
+        phoneInput.focus()
+      }
+      return
+    }
+    
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
     try {
+      // Получаем полный номер с кодом страны
+      const fullPhoneNumber = phoneInputRef.current?.getNumber() || formData.phone
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -56,7 +71,7 @@ export const Contact: React.FC<ContactProps> = ({
         },
         body: JSON.stringify({
           name: formData.name,
-          phone: formData.phone,
+          phone: fullPhoneNumber,
           email: formData.email,
           source: 'contact-form',
         }),
@@ -65,6 +80,12 @@ export const Contact: React.FC<ContactProps> = ({
       if (response.ok) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', phone: '', agreement: false })
+        // Очищаем поле телефона
+        const phoneInput = document.querySelector('input[name="phone"]') as HTMLInputElement
+        if (phoneInput) {
+          phoneInput.value = ''
+          phoneInput.classList.remove('error', 'valid')
+        }
       } else {
         setSubmitStatus('error')
       }

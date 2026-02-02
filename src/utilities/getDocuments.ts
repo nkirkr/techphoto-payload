@@ -5,10 +5,12 @@ import type { Locale } from '@/i18n/config'
 export interface DocumentsData {
   privacyPolicy: {
     title: string
+    titleInstrumental: string
     url: string
   }
   termsOfService: {
     title: string
+    titleInstrumental: string
     url: string
   }
 }
@@ -25,10 +27,12 @@ export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData
     return {
       privacyPolicy: {
         title: documents.privacyPolicy?.title || 'политика конфиденциальности',
+        titleInstrumental: documents.privacyPolicy?.titleInstrumental || 'политикой конфиденциальности',
         url: documents.privacyPolicy?.url || '#',
       },
       termsOfService: {
         title: documents.termsOfService?.title || 'пользовательское соглашение',
+        titleInstrumental: documents.termsOfService?.titleInstrumental || 'пользовательским соглашением',
         url: documents.termsOfService?.url || '#',
       },
     }
@@ -38,10 +42,12 @@ export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData
     return {
       privacyPolicy: {
         title: 'политика конфиденциальности',
+        titleInstrumental: 'политикой конфиденциальности',
         url: '#',
       },
       termsOfService: {
         title: 'пользовательское соглашение',
+        titleInstrumental: 'пользовательским соглашением',
         url: '#',
       },
     }

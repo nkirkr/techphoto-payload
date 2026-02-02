@@ -8,6 +8,7 @@ interface CycleProps {
   rightText?: string
   overlayText?: string
   image: string
+  imageTablet?: string
   imageMobile?: string
   imageAlt?: string
 }
@@ -18,6 +19,7 @@ export const Cycle: React.FC<CycleProps> = ({
   rightText = 'Полный',
   overlayText = 'акцент на важном',
   image,
+  imageTablet,
   imageMobile,
   imageAlt = '',
 }) => {
@@ -41,7 +43,10 @@ export const Cycle: React.FC<CycleProps> = ({
       <div className="cycle__image-container">
         <picture>
           {imageMobile && (
-            <source media="(max-width: 768px)" srcSet={imageMobile} />
+            <source media="(max-width: 767px)" srcSet={imageMobile} />
+          )}
+          {imageTablet && (
+            <source media="(min-width: 768px) and (max-width: 1024px)" srcSet={imageTablet} />
           )}
           <Image
             src={image}
