@@ -794,6 +794,10 @@ export interface Form {
 export interface PhotoPage {
   id: number;
   title: string;
+  /**
+   * Изображение для карточки в секции "Что мы предлагаем" на главной странице
+   */
+  cardImage?: (number | null) | Media;
   heroTitle: string;
   heroDescription: string;
   heroImage: number | Media;
@@ -1260,6 +1264,7 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface PhotoPagesSelect<T extends boolean = true> {
   title?: T;
+  cardImage?: T;
   heroTitle?: T;
   heroDescription?: T;
   heroImage?: T;

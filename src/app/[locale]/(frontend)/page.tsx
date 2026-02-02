@@ -1,5 +1,6 @@
 import { Hero, WhatWeDo, Steps, Details } from '@/components/Home'
 import { getHomePage } from '@/utilities/getHomePage'
+import { getPortfolioCards } from '@/utilities/getPortfolioCards'
 import type { Locale } from '@/i18n/config'
 
 interface Props {
@@ -9,6 +10,9 @@ interface Props {
 export default async function HomePageComponent({ params }: Props) {
   const { locale } = await params
   const data = await getHomePage(locale)
+  
+  // Получаем карточки портфолио из PhotoPages с текущей локалью
+  const portfolioCards = await getPortfolioCards(locale)
 
   // Дефолтные значения если данных нет в CMS
   const defaultCards = [
@@ -71,7 +75,7 @@ export default async function HomePageComponent({ params }: Props) {
         text={data?.whatWeDoText}
         buttonText={data?.whatWeDoButtonText}
         sectionTitle={data?.whatWeDoSectionTitle}
-        cards={data?.portfolioCards?.length ? data.portfolioCards : defaultCards}
+        cards={portfolioCards.length > 0 ? portfolioCards : defaultCards}
         features={data?.features?.length ? data.features : defaultFeatures}
       />
       <Details

@@ -52,6 +52,15 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
       localized: true,
     },
     {
+      name: 'cardImage',
+      label: 'Картинка для карточки (главная страница)',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Изображение для карточки в секции "Что мы предлагаем" на главной странице',
+      },
+    },
+    {
       type: 'tabs',
       tabs: [
         // Hero секция
