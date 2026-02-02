@@ -87,18 +87,18 @@
 		padding: 20px;
 		background: #f4f4f4;
 		border-radius: 30px;
-		height: 355px;
+		min-height: 355px;
 		display: flex;
 		flex-direction: column;
 		outline: 2px solid var(--white-100);
 		z-index: 2;
 
 		@include tablet {
-			height: 355px;
 			outline: none;
 		}
 
 		@include mobile {
+			min-height: unset;
 			height: auto;
 			outline: none;
 		}
