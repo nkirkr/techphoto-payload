@@ -182,7 +182,7 @@ export const Contact: React.FC<ContactProps> = ({
                 />
                 <span className="request__checkbox-box"></span>
                 <span className="request__checkbox-text">
-                  {privacyPolicyText}{' '}
+                  Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с {' '}
                   <a
                     href={privacyPolicyUrl}
                     target="_blank"

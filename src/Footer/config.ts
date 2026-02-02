@@ -20,6 +20,46 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'description',
+      label: {
+        ru: 'Описание',
+        en: 'Description',
+      },
+      type: 'textarea',
+      localized: true,
+      defaultValue: 'студия промышленной фото и видеосъёмки, создающая контент для производственных предприятий, инженерных и технологических компаний',
+    },
+    {
+      name: 'navTitle',
+      label: {
+        ru: 'Заголовок "Навигация"',
+        en: 'Navigation Title',
+      },
+      type: 'text',
+      localized: true,
+      defaultValue: 'навигация',
+    },
+    {
+      name: 'contactsTitle',
+      label: {
+        ru: 'Заголовок "Контакты"',
+        en: 'Contacts Title',
+      },
+      type: 'text',
+      localized: true,
+      defaultValue: 'контакты',
+    },
+    {
+      name: 'docsTitle',
+      label: {
+        ru: 'Заголовок "Документация"',
+        en: 'Documentation Title',
+      },
+      type: 'text',
+      localized: true,
+      defaultValue: 'документация',
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [

@@ -142,6 +142,22 @@ export const Contacts: GlobalConfig = {
       defaultValue: 'отправить',
       localized: true,
     },
+    {
+      name: 'privacyPolicyText',
+      label: {
+        ru: 'Текст согласия на обработку данных',
+        en: 'Privacy policy agreement text',
+      },
+      type: 'textarea',
+      defaultValue: 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
+      localized: true,
+      admin: {
+        description: {
+          ru: 'Текст перед ссылкой на политику конфиденциальности',
+          en: 'Text before privacy policy link',
+        },
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidateContacts],

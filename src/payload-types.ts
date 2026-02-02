@@ -1793,6 +1793,10 @@ export interface Header {
  */
 export interface Footer {
   id: number;
+  description?: string | null;
+  navTitle?: string | null;
+  contactsTitle?: string | null;
+  docsTitle?: string | null;
   navItems?:
     | {
         link: {
@@ -1894,6 +1898,10 @@ export interface Contact {
   modalTitle?: string | null;
   modalSubtitle?: string | null;
   modalSubmitButtonText?: string | null;
+  /**
+   * Text before privacy policy link
+   */
+  privacyPolicyText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1942,6 +1950,10 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  description?: T;
+  navTitle?: T;
+  contactsTitle?: T;
+  docsTitle?: T;
   navItems?:
     | T
     | {
@@ -2025,6 +2037,7 @@ export interface ContactsSelect<T extends boolean = true> {
   modalTitle?: T;
   modalSubtitle?: T;
   modalSubmitButtonText?: T;
+  privacyPolicyText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -17,6 +17,7 @@ import { draftMode } from 'next/headers'
 import { locales, type Locale } from '@/i18n/config'
 import { getContacts } from '@/utilities/getContacts'
 import { getDocuments } from '@/utilities/getDocuments'
+import { getFooter } from '@/utilities/getFooter'
 
 import './globals.css'
 import '@/styles/main.scss'
@@ -36,6 +37,7 @@ export default async function RootLayout({ children, params }: Props) {
   const { isEnabled } = await draftMode()
   const contacts = await getContacts(locale)
   const documents = await getDocuments(locale)
+  const footer = await getFooter(locale)
 
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang={locale} suppressHydrationWarning>
@@ -66,9 +68,14 @@ export default async function RootLayout({ children, params }: Props) {
               formEmailPlaceholder={contacts.formEmailPlaceholder}
               formPhonePlaceholder={contacts.formPhonePlaceholder}
               formSubmitButtonText={contacts.formSubmitButtonText}
+              privacyPolicyText={contacts.privacyPolicyText}
               privacyPolicyLinkText={documents.privacyPolicy.title}
             />
             <Footer 
+              description={footer.description}
+              navTitle={footer.navTitle}
+              contactsTitle={footer.contactsTitle}
+              docsTitle={footer.docsTitle}
               phone={contacts.phone}
               email={contacts.email}
               docLinks={[

@@ -11,6 +11,9 @@ interface FooterLink {
 interface FooterProps {
   logo?: string
   description?: string
+  navTitle?: string
+  contactsTitle?: string
+  docsTitle?: string
   navLinks?: FooterLink[]
   phone?: string
   email?: string
@@ -33,6 +36,9 @@ const defaultDocLinks: FooterLink[] = [
 export const Footer: React.FC<FooterProps> = ({
   logo = '/logo-black.svg',
   description = 'студия промышленной фото и видеосъёмки, создающая контент для производственных предприятий, инженерных и технологических компаний',
+  navTitle = 'навигация',
+  contactsTitle = 'контакты',
+  docsTitle = 'документация',
   navLinks = defaultNavLinks,
   phone = '+7 (923) 337-01-09',
   email = 'tehphoto@mail.ru',
@@ -50,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({
 
           <div className="footer__row">
             <nav className="footer__nav">
-              <h3 className="footer__title">навигация</h3>
+              <h3 className="footer__title">{navTitle}</h3>
               <ul className="footer__list">
                 {navLinks.map((link, index) => (
                   <li key={index} className="footer__item">
@@ -63,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({
             </nav>
 
             <div className="footer__contacts">
-              <h3 className="footer__title">контакты</h3>
+              <h3 className="footer__title">{contactsTitle}</h3>
               <ul className="footer__list">
                 <li className="footer__item">
                   <a href={`tel:${phone.replace(/\D/g, '')}`} className="footer__link">
@@ -80,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div className="footer__docs">
-            <h3 className="footer__title">документация</h3>
+            <h3 className="footer__title">{docsTitle}</h3>
             <ul className="footer__list">
               {docLinks.map((link, index) => (
                 <li key={index} className="footer__item">
