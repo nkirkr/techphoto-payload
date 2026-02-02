@@ -186,11 +186,38 @@ export const HomePage: GlobalConfig = {
     {
       name: 'detailsBackgroundImage',
       label: {
-        ru: 'Детали: Фоновое изображение',
-        en: 'Details: Background Image',
+        ru: 'Детали: Фоновое изображение (десктоп)',
+        en: 'Details: Background Image (Desktop)',
       },
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: 'Изображение для десктопа (>1024px)',
+      },
+    },
+    {
+      name: 'detailsBackgroundImageTablet',
+      label: {
+        ru: 'Детали: Фоновое изображение (планшет)',
+        en: 'Details: Background Image (Tablet)',
+      },
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Изображение для планшетов (768px - 1024px)',
+      },
+    },
+    {
+      name: 'detailsBackgroundImageMobile',
+      label: {
+        ru: 'Детали: Фоновое изображение (мобильная)',
+        en: 'Details: Background Image (Mobile)',
+      },
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Изображение для мобильных устройств (<768px)',
+      },
     },
     // Секция "Этапы работы"
     {

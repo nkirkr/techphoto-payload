@@ -194,6 +194,17 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               relationTo: 'media',
               admin: {
                 condition: (data) => data?.showCycle,
+                description: 'Изображение для десктопа (>1024px)',
+              },
+            },
+            {
+              name: 'cycleImageTablet',
+              label: 'Изображение (планшет)',
+              type: 'upload',
+              relationTo: 'media',
+              admin: {
+                condition: (data) => data?.showCycle,
+                description: 'Изображение для планшетов (768px - 1024px)',
               },
             },
             {
@@ -203,7 +214,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               relationTo: 'media',
               admin: {
                 condition: (data) => data?.showCycle,
-                description: 'Изображение для мобильных устройств',
+                description: 'Изображение для мобильных устройств (<768px)',
               },
             },
           ],

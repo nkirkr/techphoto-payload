@@ -201,6 +201,10 @@ export const ProductsSection: React.FC = () => {
   const [justUnlocked, setJustUnlocked] = useState(false)
   const [lockDirection, setLockDirection] = useState<'down' | 'up' | null>(null)
 
+  // Refs for instant state tracking (to avoid race conditions with useState)
+  const isLockedRef = useRef(false)
+  const lockDirectionRef = useRef<'down' | 'up' | null>(null)
+
   // Images cache
   const imagesRef = useRef<Map<string, HTMLImageElement[]>>(new Map())
   const loadedProductsRef = useRef<Set<string>>(new Set())
@@ -272,7 +276,6 @@ export const ProductsSection: React.FC = () => {
     await Promise.all(loadPromises)
     imagesRef.current.set(product.name, images)
     loadedProductsRef.current.add(product.name)
-    console.log(`Animation ${product.name} loaded (${product.totalFrames} frames)`)
     return true
   }, [])
 
@@ -554,6 +557,9 @@ export const ProductsSection: React.FC = () => {
   useEffect(() => {
     if (isTablet || isLocked) return
 
+    let lastScrollY = window.scrollY
+    let lastDirection: 'down' | 'up' = 'down'
+
     const checkPosition = () => {
       const section = sectionRef.current
       if (!section) {
@@ -563,17 +569,28 @@ export const ProductsSection: React.FC = () => {
 
       const sectionRect = section.getBoundingClientRect()
       const topDiff = Math.abs(sectionRect.top)
+      const currentScrollY = window.scrollY
+
+      // Определяем направление скролла (только если реально двигаемся)
+      if (currentScrollY !== lastScrollY) {
+        lastDirection = currentScrollY > lastScrollY ? 'down' : 'up'
+        lastScrollY = currentScrollY
+      }
 
       // If section top is very close to viewport top and we're not locked yet
       // Force lock to prevent fast scroll bypass
-      if (!isLocked && !justUnlocked && topDiff < 30) {
-        console.log('⚡ Fast scroll detected - forcing lock at topDiff:', topDiff.toFixed(1))
+      // Use ref for instant check to avoid race conditions
+      if (!isLockedRef.current && !justUnlocked && topDiff < 30) {
+        // Set ref immediately to prevent re-triggering
+        isLockedRef.current = true
+        lockDirectionRef.current = lastDirection
+        
         lenisRef.current?.stop()
         document.body.style.overflow = 'hidden'
         setIsLocked(true)
-        setLockDirection('down')
-        setScrollProgress(0)
-        scrollProgressRef.current = 0
+        setLockDirection(lastDirection)
+        setScrollProgress(lastDirection === 'down' ? 0 : 1)
+        scrollProgressRef.current = lastDirection === 'down' ? 0 : 1
         setShowSkipBtn(true)
         lastTopDiffRef.current = topDiff
       }
@@ -632,7 +649,9 @@ export const ProductsSection: React.FC = () => {
       if (!isLocked && !justUnlocked && delta > 0 && inLockZoneTop && isApproachingTop) {
         e.preventDefault()
         e.stopPropagation()
-        console.log('🔒 LOCK DOWN - topDiff:', topDiff.toFixed(1), 'approaching:', isApproachingTop)
+        // Set refs immediately
+        isLockedRef.current = true
+        lockDirectionRef.current = 'down'
         // Stop Lenis (block scroll)
         lenisRef.current?.stop()
         // Also lock via CSS as fallback
@@ -651,7 +670,9 @@ export const ProductsSection: React.FC = () => {
       if (!isLocked && !justUnlocked && delta < 0 && topDiffUp < 50) {
         e.preventDefault()
         e.stopPropagation()
-        console.log('🔒 LOCK UP - topDiffUp:', topDiffUp.toFixed(1))
+        // Set refs immediately
+        isLockedRef.current = true
+        lockDirectionRef.current = 'up'
         // Stop Lenis (block scroll)
         lenisRef.current?.stop()
         // Also lock via CSS as fallback
@@ -670,15 +691,7 @@ export const ProductsSection: React.FC = () => {
       lastTopDiffRef.current = topDiff
       lastBottomDiffRef.current = bottomDiff
 
-      // Debug logging when in trigger zones
-      if (inTriggerZoneTop && delta > 0 && !isLocked) {
-        console.log('📍 In top trigger zone (scroll down):', {
-          topDiff: topDiff.toFixed(1),
-          inLockZone: inLockZoneTop,
-          isApproaching: isApproachingTop,
-          justUnlocked
-        })
-      }
+      // Debug logging when in trigger zones (removed for production)
 
       // If locked - control animation with wheel
       if (isLocked) {
@@ -726,7 +739,6 @@ export const ProductsSection: React.FC = () => {
               }
             } else {
               // Last product - unlock scroll
-              console.log('🔓 UNLOCK - last product reached')
               lenisRef.current?.start()
               document.body.style.overflow = ''
               setIsLocked(false)
@@ -760,7 +772,6 @@ export const ProductsSection: React.FC = () => {
               }
             } else {
               // First product - unlock scroll
-              console.log('🔓 UNLOCK - first product reached')
               lenisRef.current?.start()
               document.body.style.overflow = ''
               setIsLocked(false)
@@ -786,30 +797,70 @@ export const ProductsSection: React.FC = () => {
 
   // Handle skip button
   const handleSkip = useCallback(() => {
-    console.log('⏭️ SKIP clicked - unlocking scroll')
-    // Resume Lenis
-    lenisRef.current?.start()
-    // Resume CSS scroll
-    document.body.style.overflow = ''
-    
+    if (!isLockedRef.current) {
+      return
+    }
+
+    // ВАЖНО: Сохраняем направление ПЕРЕД разблокировкой (как в erco-theme)
+    // Используем ref для мгновенного значения
+    const direction = lockDirectionRef.current
+
+    // Разблокируем скролл (точный порядок из erco-theme)
+    // Сначала refs для мгновенного эффекта
+    isLockedRef.current = false
+    lockDirectionRef.current = null
+    // Потом state
     setIsLocked(false)
+    setLockDirection(null) // Сбрасываем направление
     setJustUnlocked(true)
+
+    // Возобновляем Lenis
+    lenisRef.current?.start()
+    // Возобновляем CSS scroll
+    document.body.style.overflow = ''
+
+    // Скрываем кнопку
     setShowSkipBtn(false)
 
     // Reset after delay
     setTimeout(() => setJustUnlocked(false), 1500)
 
-    // Scroll to next section after unlock
-    setTimeout(() => {
-      const section = sectionRef.current
-      if (section) {
-        const nextSection = section.nextElementSibling as HTMLElement
-        if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
+    // Определяем целевой блок в зависимости от направления
+    const section = sectionRef.current
+    if (!section) {
+      return
+    }
+
+    let targetSection: HTMLElement | null = null
+
+    if (direction === 'down') {
+      // Скролл сверху вниз - переходим к следующему блоку
+      targetSection = section.nextElementSibling as HTMLElement
+    } else if (direction === 'up') {
+      // Скролл снизу вверх - переходим к предыдущему блоку
+      targetSection = section.previousElementSibling as HTMLElement
+    }
+
+    if (targetSection) {
+      const lenis = lenisRef.current
+      const targetY = targetSection.offsetTop
+
+      if (lenis) {
+        // Плавная прокрутка к целевому блоку (как в erco-theme)
+        lenis.scrollTo(targetY, {
+          duration: 1.5,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          offset: 0,
+        })
+      } else {
+        // Fallback на обычный скролл
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: direction === 'down' ? 'start' : 'end',
+        })
       }
-    }, 100)
-  }, [])
+    }
+  }, []) // Using refs instead of state, no dependencies needed
 
   // Initialize based on mode
   useEffect(() => {

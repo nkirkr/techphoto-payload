@@ -815,9 +815,16 @@ export interface PhotoPage {
   cycleLeftText?: string | null;
   cycleRightText?: string | null;
   cycleOverlayText?: string | null;
+  /**
+   * Изображение для десктопа (>1024px)
+   */
   cycleImage?: (number | null) | Media;
   /**
-   * Изображение для мобильных устройств
+   * Изображение для планшетов (768px - 1024px)
+   */
+  cycleImageTablet?: (number | null) | Media;
+  /**
+   * Изображение для мобильных устройств (<768px)
    */
   cycleImageMobile?: (number | null) | Media;
   whereTitle?: string | null;
@@ -1283,6 +1290,7 @@ export interface PhotoPagesSelect<T extends boolean = true> {
   cycleRightText?: T;
   cycleOverlayText?: T;
   cycleImage?: T;
+  cycleImageTablet?: T;
   cycleImageMobile?: T;
   whereTitle?: T;
   whereItems?:
@@ -1838,7 +1846,18 @@ export interface HomePage {
       }[]
     | null;
   detailsText?: string | null;
+  /**
+   * Изображение для десктопа (>1024px)
+   */
   detailsBackgroundImage?: (number | null) | Media;
+  /**
+   * Изображение для планшетов (768px - 1024px)
+   */
+  detailsBackgroundImageTablet?: (number | null) | Media;
+  /**
+   * Изображение для мобильных устройств (<768px)
+   */
+  detailsBackgroundImageMobile?: (number | null) | Media;
   stepsSubtitle?: string | null;
   stepsTitle?: string | null;
   steps?:
@@ -1971,6 +1990,8 @@ export interface HomePageSelect<T extends boolean = true> {
       };
   detailsText?: T;
   detailsBackgroundImage?: T;
+  detailsBackgroundImageTablet?: T;
+  detailsBackgroundImageMobile?: T;
   stepsSubtitle?: T;
   stepsTitle?: T;
   steps?:
