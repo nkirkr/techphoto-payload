@@ -26,9 +26,6 @@ export const Details: React.FC<DetailsProps> = ({
       }
     >
       <div className="details__content">
-        <div className="details__circle details__circle--middle"></div>
-        <div className="details__circle details__circle--large"></div>
-        <p className="details__text">{text}</p>
       </div>
     </section>
   )
