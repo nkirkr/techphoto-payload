@@ -1,6 +1,6 @@
 .photos {
 	width: 100%;
-	padding: 0;
+	padding-top: 10px;
 	background-color: var(--white-100);
 
 	&__grid {
@@ -10,12 +10,47 @@
 		padding: 0 20px;
 
 		@include tablet {
-			gap: 10px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 12px;
+			padding: 0 20px;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(59.6% - 6px); }
+			  &:nth-of-type(2) { width: calc(40.4% - 6px); }
+			  
+			  &:nth-of-type(3) { width: calc(45.5% - 8px); } 
+			  &:nth-of-type(4) { width: calc(27.4% - 8px); }
+			  &:nth-of-type(5) { width: calc(27.1% - 8px); } 
+			  
+			  &:nth-of-type(6) { width: calc(27.1% - 8px); }
+			  &:nth-of-type(7) { width: calc(32.8% - 8px); }
+			  &:nth-of-type(8) { width: calc(40.1% - 8px); }
+			}
 		}
 
 		@include mobile {
 			gap: 6px;
 			padding: 0;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(50% - 3px); }
+			  &:nth-of-type(2) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(3) { width: 100%; }
+			  
+			  &:nth-of-type(4) { width: calc(50% - 3px); }
+			  &:nth-of-type(5) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(6) { width: 100%; }
+			  
+			  &:nth-of-type(7) { width: calc(50% - 3px); height: 130px; }
+			  &:nth-of-type(8) { width: calc(50% - 3px); height: 130px;}
+			}
 		}
 	}
 
@@ -25,8 +60,9 @@
 		background-color: var(--grey-back);
 		border-radius: 4px;
 		flex-shrink: 0;
-		height: 280px;
-		
+		@include tablet {
+			height: 280px;
+		}
 		@include mobile {
 			height: 262px;
 		}
@@ -46,570 +82,241 @@
 	}
 }
 
-// Object page specific
-.photos--object {
-	.photos__item {
-		&--1 {
-			width: 33.4%;
-
-			@include tablet {
-				width: 58.8%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
+.photos--portrait {
+	.photos__grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 11px;
+		padding: 0 20px;
+		
+		.photos__item {
+			flex-shrink: 0;
+			
+			&:nth-of-type(1) { width: calc(15.5% - 9px); } 
+			&:nth-of-type(2) { width: calc(15.5% - 9px); }
+			&:nth-of-type(3) { width: calc(15.5% - 9px); }
+			&:nth-of-type(4) { width: calc(38% - 9px); }  
+			&:nth-of-type(5) { width: calc(15.5% - 9px); }
+			
+			&:nth-of-type(6) { width: calc(33.5% - 8px); }
+			&:nth-of-type(7) { width: calc(33.3% - 8px); }
+			&:nth-of-type(8) { width: calc(33.2% - 8px); }
 		}
 
-		&--2 {
-			width: 15.2%;
-
-			@include tablet {
-				width: 39.8%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--3 {
-			width: 33.9%;
-
-			@include tablet {
-				width: 44.3%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
+		@include tablet {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 12px;
+			padding: 0 20px;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(59.6% - 6px); }
+			  &:nth-of-type(2) { width: calc(40.4% - 6px); }
+			  
+			  &:nth-of-type(3) { width: calc(45.5% - 8px); } 
+			  &:nth-of-type(4) { width: calc(27.4% - 8px); }
+			  &:nth-of-type(5) { width: calc(27.1% - 8px); } 
+			  
+			  &:nth-of-type(6) { width: calc(27.1% - 8px); }
+			  &:nth-of-type(7) { width: calc(32.8% - 8px); }
+			  &:nth-of-type(8) { width: calc(40.1% - 8px); }
 			}
 		}
-
-		&--4 {
-			width: 15.1%;
-
-			@include tablet {
-				width: 26.7%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--5 {
-			width: 15%;
-
-			@include tablet {
-				width: 26.4%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--6 {
-			width: 15%;
-
-			@include tablet {
-				width: 26.4%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--7 {
-			width: 29.9%;
-
-			@include tablet {
-				width: 32%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--8 {
-			width: 37.6%;
-
-			@include tablet {
-				width: 39%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
+		@include mobile {
+			gap: 6px;
+			padding: 0;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(50% - 3px); }
+			  &:nth-of-type(2) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(3) { width: 100%; }
+			  
+			  &:nth-of-type(4) { width: calc(50% - 3px); }
+			  &:nth-of-type(5) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(6) { width: 100%; }
+			  
+			  &:nth-of-type(7) { width: calc(50% - 3px); height: 130px; }
+			  &:nth-of-type(8) { width: calc(50% - 3px); height: 130px;}
 			}
 		}
 	}
 }
-
-// Machine page specific
+.photos--object, .photos--portrait, .photos--3d, .photos--macro, .photos--machine {
+	.photos__grid {
+		@include tablet {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 12px;
+			padding: 0 20px;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(59.6% - 6px); }
+			  &:nth-of-type(2) { width: calc(40.4% - 6px); }
+			  
+			  &:nth-of-type(3) { width: calc(45.5% - 8px); } 
+			  &:nth-of-type(4) { width: calc(27.4% - 8px); }
+			  &:nth-of-type(5) { width: calc(27.1% - 8px); } 
+			  
+			  &:nth-of-type(6) { width: calc(27.1% - 8px); }
+			  &:nth-of-type(7) { width: calc(32.8% - 8px); }
+			  &:nth-of-type(8) { width: calc(40.1% - 8px); }
+			}
+		}
+		@include mobile {
+			gap: 6px;
+			padding: 0;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(50% - 3px); }
+			  &:nth-of-type(2) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(3) { width: 100%; }
+			  
+			  &:nth-of-type(4) { width: calc(50% - 3px); }
+			  &:nth-of-type(5) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(6) { width: 100%; }
+			  
+			  &:nth-of-type(7) { width: calc(50% - 3px); height: 130px; }
+			  &:nth-of-type(8) { width: calc(50% - 3px); height: 130px;}
+			}
+		}
+	}
+}
 .photos--machine {
 	.photos__item {
-		&--1 {
-			width: 18.4%;
-
-			@include tablet {
-				width: 58.8%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 176px;
-			}
+		&:nth-of-type(1) { width: calc(18.8% - 8px); } // 257/1365 ≈ 18.8%
+		&:nth-of-type(2) { width: calc(34.2% - 10px); } // 467/1365 ≈ 34.2%
+		&:nth-of-type(3) { width: calc(16.2% - 8px); } // 221/1365 ≈ 16.2%
+		&:nth-of-type(4) { width: calc(30.8% - 8px); } // 420/1365 ≈ 30.8%
+		
+		// Ряд 2: 583 + 257 + 536 = 1376px
+		&:nth-of-type(5) { width: calc(42.4% - 8px); } // 583/1376 ≈ 42.4%
+		&:nth-of-type(6) { width: calc(18.7% - 8px); } // 257/1376 ≈ 18.7%
+		&:nth-of-type(7) { width: calc(38.9% - 8px); } // 536/1376 ≈ 38.9%
+		
+		// Ряд 3: 461 + 462 + 454 = 1377px
+		&:nth-of-type(8) { width: calc(33.5% - 8px); } // 461/1377 ≈ 33.5%
+		&:nth-of-type(9) { width: calc(33.5% - 8px); } // 462/1377 ≈ 33.5%
+		&:nth-of-type(10) { width: calc(33% - 8px); }  // 454/1377 ≈ 33%
+	}
+	@include tablet {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 12px;
+		
+		.photos__item {
+		  	flex-shrink: 0;
+		  
+			&:nth-of-type(1) { width: calc(59.6% - 6px); } 
+			&:nth-of-type(2) { width: calc(40.4% - 6px); } 
+			
+			&:nth-of-type(3) { width: calc(45.5% - 8px); } 
+			&:nth-of-type(4) { width: calc(27.4% - 8px); } 
+			&:nth-of-type(5) { width: calc(27.1% - 8px); }
+			
+			&:nth-of-type(6) { width: calc(27.1% - 8px); }
+			&:nth-of-type(7) { width: calc(32.8% - 8px); }
+			&:nth-of-type(8) { width: calc(40.1% - 8px); }
+			
+			&:nth-of-type(9) { width: calc(50% - 6px); }
+			&:nth-of-type(10) { width: calc(50% - 6px); }
 		}
-
-		&--2 {
-			width: 33.4%;
-
-			@include tablet {
-				width: 39.8%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--3 {
-			width: 15.8%;
-
-			@include tablet {
-				width: 43%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--4 {
-			width: 30%;
-
-			@include tablet {
-				width: 26.5%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--5 {
-			width: 41.6% !important;
-
-			@include tablet {
-				width: 26% !important;
-			}
-
-			@include mobile {
-				width: 49% !important;
-				height: 262px;
-			}
-		}
-
-		&--6 {
-			width: 18.4%;
-
-			@include tablet {
-				width: 26.4%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--7 {
-			width: 38.3%;
-
-			@include tablet {
-				width: 32%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--8 {
-			width: 32.9%;
-
-			@include tablet {
-				width: 39%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--9 {
-			width: 33%;
-
-			@include tablet {
-				width: 48%;
-			}
-
-			@include mobile {
+	}
+	@include mobile {
+		.photos__item {
+			&:nth-of-type(9), &:nth-of-type(10) {
 				display: none;
+			} 
+
+		}
+	}
+}
+.photos--object {
+	.photos__grid {
+		.photos__item {
+			&:nth-of-type(1) { width: calc(34.2% - 9px); } // 467/1366 ≈ 34.2%
+			&:nth-of-type(2) { width: calc(15.6% - 9px); } // 213/1366 ≈ 15.6%
+			&:nth-of-type(3) { width: calc(34.7% - 9px); } // 474/1366 ≈ 34.7%
+			&:nth-of-type(4) { width: calc(15.5% - 9px); } // 212/1366 ≈ 15.5%
+			
+			// Ряд 2: 210 + 210 + 419 + 526 = 1365px
+			&:nth-of-type(5) { width: calc(15.4% - 9px); } // 210/1365 ≈ 15.4%
+			&:nth-of-type(6) { width: calc(15.4% - 9px); } // 210/1365 ≈ 15.4%
+			&:nth-of-type(7) { width: calc(30.7% - 9px); } // 419/1365 ≈ 30.7%
+			&:nth-of-type(8) { width: calc(38.5% - 9px); } // 526/1365 ≈ 38.5%
+		}
+		@include tablet {
+			.photos__item {
+				&:nth-of-type(1) { width: calc(59.6% - 6px); }
+				&:nth-of-type(2) { width: calc(40.4% - 6px); }
+				
+				&:nth-of-type(3) { width: calc(45.5% - 8px); } 
+				&:nth-of-type(4) { width: calc(27.4% - 8px); }
+				&:nth-of-type(5) { width: calc(27.1% - 8px); } 
+				
+				&:nth-of-type(6) { width: calc(27.1% - 8px); }
+				&:nth-of-type(7) { width: calc(32.8% - 8px); }
+				&:nth-of-type(8) { width: calc(40.1% - 8px); }
 			}
 		}
-
-		&--10 {
-			width: 32.4%;
-
-			@include tablet {
-				width: 48%;
-			}
-
-			@include mobile {
-				display: none;
+		@include mobile {
+			gap: 6px;
+			padding: 0;
+			
+			.photos__item {
+			  flex-shrink: 0;
+			  
+			  &:nth-of-type(1) { width: calc(50% - 3px); }
+			  &:nth-of-type(2) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(3) { width: 100%; }
+			  
+			  &:nth-of-type(4) { width: calc(50% - 3px); }
+			  &:nth-of-type(5) { width: calc(50% - 3px); }
+			  
+			  &:nth-of-type(6) { width: 100%; }
+			  
+			  &:nth-of-type(7) { width: calc(50% - 3px); height: 130px; }
+			  &:nth-of-type(8) { width: calc(50% - 3px); height: 130px;}
 			}
 		}
 	}
 }
-
-// Macro page specific
 .photos--macro {
 	.photos__item {
-		&--1 {
-			width: 30.8%;
-
-			@include tablet {
-				width: 58.5%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--2 {
-			width: 16.25%;
-
-			@include tablet {
-				width: 39.5%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--3 {
-			width: 30.8%;
-
-			@include tablet {
-				width: 42.4%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--4 {
-			width: 17%;
-
-			@include tablet {
-				width: 25.4%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--5 {
-			width: 30.8%;
-
-			@include tablet {
-				width: 25.2%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--6 {
-			width: 30.8%;
-
-			@include tablet {
-				width: 25.2%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--7 {
-			width: 17%;
-
-			@include tablet {
-				width: 30.5%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--8 {
-			width: 16.2%;
-
-			@include tablet {
-				width: 39%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--9 {
-			width: 32.4%;
-
-			@include tablet {
-				width: 31.2%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--10 {
-			width: 32%;
-
-			@include tablet {
-				width: 31.2%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--11 {
-			width: 31.2%;
-
-			@include tablet {
-				width: 31.2%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
+		&:nth-of-type(1) { width: calc(32.5% - 9px); } // 444/1366 ≈ 32.5%
+		&:nth-of-type(2) { width: calc(17.1% - 8px); } // 234/1366 ≈ 17.1%
+		&:nth-of-type(3) { width: calc(32.4% - 9px); } // 443/1366 ≈ 32.4%
+		&:nth-of-type(4) { width: calc(18% - 8px); }   // 245/1366 ≈ 18%
+		
+		// Ряд 2: 444 + 443 + 245 + 233 = 1365px
+		&:nth-of-type(5) { width: calc(32.5% - 8px); } // 444/1365 ≈ 32.5%
+		&:nth-of-type(6) { width: calc(32.5% - 9px); } // 443/1365 ≈ 32.5%
+		&:nth-of-type(7) { width: calc(18% - 8px); }   // 245/1365 ≈ 18%
+		&:nth-of-type(8) { width: calc(17% - 9px); }   // 233/1365 ≈ 17%
+		
+		// Ряд 3: 467 + 460 + 449 = 1376px
+		&:nth-of-type(9) { width: calc(34% - 8px); }   // 467/1376 ≈ 34%
+		&:nth-of-type(10) { width: calc(33.4% - 8px); } // 460/1376 ≈ 33.4%
+		&:nth-of-type(11) { width: calc(32.6% - 8px); } // 449/1376 ≈ 32.6%
 	}
-}
 
-// Portraits page specific
-.photos--portrait,
-.photos--portraits {
-	.photos__item {
-		// Портретные (узкие) изображения
-		&--portrait {
-			width: calc((100vw - 40px) * 0.15 - 8.8px);
-
-			@include tablet {
-				width: 37.89%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-
-			// Первый портрет шире на планшете
-			&:nth-child(1) {
-				@include tablet {
-					width: 56%;
-				}
-			}
-		}
-
-		// Видео (первое в ряду)
-		&--video {
-			width: calc((100vw - 40px) * 0.3664 - 8.8px);
-
-			@include tablet {
-				width: 25.42%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		// Широкое видео
-		&--video-wide {
-			width: calc((100vw - 40px) * 0.3293 - 7.33px);
-
-			@include tablet {
-				width: 30%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		// Горизонтальное (landscape) изображение
-		&--landscape {
-			width: calc((100vw - 40px) * 0.3279 - 7.33px);
-
-			@include tablet {
-				width: 37.17%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-	}
-}
-
-// 3D page specific (используем сетку как у object)
-.photos--3d {
-	.photos__item {
-		&--1 {
-			width: 33.4%;
-
-			@include tablet {
-				width: 58.8%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--2 {
-			width: 15.2%;
-
-			@include tablet {
-				width: 39.8%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--3 {
-			width: 33.9%;
-
-			@include tablet {
-				width: 44.3%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--4 {
-			width: 15.1%;
-
-			@include tablet {
-				width: 26.7%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--5 {
-			width: 15%;
-
-			@include tablet {
-				width: 26.4%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 262px;
-			}
-		}
-
-		&--6 {
-			width: 15%;
-
-			@include tablet {
-				width: 26.4%;
-			}
-
-			@include mobile {
-				width: 100%;
-				height: 240px;
-			}
-		}
-
-		&--7 {
-			width: 29.9%;
-
-			@include tablet {
-				width: 32%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
-		}
-
-		&--8 {
-			width: 37.6%;
-
-			@include tablet {
-				width: 39%;
-			}
-
-			@include mobile {
-				width: 49%;
-				height: 130px;
-			}
+	@include mobile {
+		.photos__item {
+			&:nth-of-type(9) { width: 100%; }
+			&:nth-of-type(10) { width: calc(50% - 3px); height: 130px; }
+			&:nth-of-type(11) { width: calc(50% - 3px); height: 130px;}
 		}
 	}
 }
