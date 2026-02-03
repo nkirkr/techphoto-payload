@@ -145,16 +145,32 @@ export const Contacts: GlobalConfig = {
     {
       name: 'privacyPolicyText',
       label: {
-        ru: 'Текст согласия на обработку данных',
-        en: 'Privacy policy agreement text',
+        ru: 'Текст согласия на обработку данных (форма)',
+        en: 'Privacy policy agreement text (form)',
       },
       type: 'textarea',
       defaultValue: 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
       localized: true,
       admin: {
         description: {
-          ru: 'Текст перед ссылкой на политику конфиденциальности',
-          en: 'Text before privacy policy link',
+          ru: 'Текст перед ссылкой на политику конфиденциальности в форме на странице',
+          en: 'Text before privacy policy link in page form',
+        },
+      },
+    },
+    {
+      name: 'modalPrivacyPolicyText',
+      label: {
+        ru: 'Текст согласия на обработку данных (модальное окно)',
+        en: 'Privacy policy agreement text (modal)',
+      },
+      type: 'textarea',
+      defaultValue: 'Я подтверждаю, что ознакомлен(а) с',
+      localized: true,
+      admin: {
+        description: {
+          ru: 'Текст перед ссылками на политику конфиденциальности в модальном окне',
+          en: 'Text before privacy policy links in modal window',
         },
       },
     },

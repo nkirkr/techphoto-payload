@@ -48,7 +48,11 @@ pool.query(sql)
 - `contacts_title` - заголовок контактов
 - `docs_title` - заголовок документации
 
-### 4. Documents - Заголовки в творительном падеже
+### 4. Contacts - Локализованные тексты согласия
+- `privacy_policy_text` - текст согласия для формы на странице
+- `modal_privacy_policy_text` - текст согласия для модального окна
+
+### 5. Documents - Заголовки в творительном падеже
 - `privacy_policy_title_instrumental` - "Политикой конфиденциальности"
 - `terms_of_service_title_instrumental` - "Условиями использования"
 
@@ -72,6 +76,11 @@ AND column_name IN ('details_background_image_tablet_id', 'details_background_im
 SELECT column_name FROM information_schema.columns 
 WHERE table_name = 'footer_locales' 
 AND column_name IN ('description', 'nav_title', 'contacts_title', 'docs_title');
+
+-- Проверка Contacts
+SELECT column_name FROM information_schema.columns 
+WHERE table_name = 'contacts_locales' 
+AND column_name IN ('privacy_policy_text', 'modal_privacy_policy_text');
 
 -- Проверка Documents
 SELECT column_name FROM information_schema.columns 

@@ -1899,9 +1899,13 @@ export interface Contact {
   modalSubtitle?: string | null;
   modalSubmitButtonText?: string | null;
   /**
-   * Text before privacy policy link
+   * Text before privacy policy link in page form
    */
   privacyPolicyText?: string | null;
+  /**
+   * Text before privacy policy links in modal window
+   */
+  modalPrivacyPolicyText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2052,6 +2056,7 @@ export interface ContactsSelect<T extends boolean = true> {
   modalSubtitle?: T;
   modalSubmitButtonText?: T;
   privacyPolicyText?: T;
+  modalPrivacyPolicyText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

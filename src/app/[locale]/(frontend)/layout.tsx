@@ -90,6 +90,7 @@ export default async function RootLayout({ children, params }: Props) {
               phonePlaceholder={contacts.formPhonePlaceholder}
               emailPlaceholder={contacts.formEmailPlaceholder}
               submitButtonText={contacts.modalSubmitButtonText}
+              agreementText={contacts.modalPrivacyPolicyText}
               privacyPolicyUrl={documents.privacyPolicy.url}
               privacyPolicyLinkText={documents.privacyPolicy.titleInstrumental}
             />
