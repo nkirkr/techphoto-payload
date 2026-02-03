@@ -6,6 +6,8 @@ import { PhoneInput, PhoneInputRef } from '@/components/PhoneInput'
 
 interface ContactProps {
   title?: string
+  phoneLabel?: string
+  emailLabel?: string
   phone?: string
   email?: string
   telegramUrl?: string
@@ -21,6 +23,8 @@ interface ContactProps {
 
 export const Contact: React.FC<ContactProps> = ({
   title = 'контакты',
+  phoneLabel = 'телефон:',
+  emailLabel = 'e-mail:',
   phone = '+7 (923) 337-01-09',
   email = 'tehphoto@mail.ru',
   telegramUrl = '#',
@@ -124,14 +128,14 @@ export const Contact: React.FC<ContactProps> = ({
           </div>
 
           <div className="request__contact">
-            <span className="request__contact-label">телефон:</span>
+            <span className="request__contact-label">{phoneLabel}</span>
             <a href={`tel:${phone.replace(/\D/g, '')}`} className="request__contact-value">
               {phone}
             </a>
           </div>
 
           <div className="request__contact">
-            <span className="request__contact-label">e-mail:</span>
+            <span className="request__contact-label">{emailLabel}</span>
             <a
               href={`mailto:${email}`}
               className="request__contact-value request__contact-value--email"

@@ -1883,6 +1883,8 @@ export interface HomePage {
 export interface Contact {
   id: number;
   title?: string | null;
+  phoneLabel?: string | null;
+  emailLabel?: string | null;
   phone?: string | null;
   email?: string | null;
   telegramUrl?: string | null;
@@ -2043,6 +2045,8 @@ export interface HomePageSelect<T extends boolean = true> {
  */
 export interface ContactsSelect<T extends boolean = true> {
   title?: T;
+  phoneLabel?: T;
+  emailLabel?: T;
   phone?: T;
   email?: T;
   telegramUrl?: T;

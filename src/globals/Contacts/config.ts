@@ -28,6 +28,26 @@ export const Contacts: GlobalConfig = {
       localized: true,
     },
     {
+      name: 'phoneLabel',
+      label: {
+        ru: 'Label "Телефон"',
+        en: 'Phone Label',
+      },
+      type: 'text',
+      defaultValue: 'телефон:',
+      localized: true,
+    },
+    {
+      name: 'emailLabel',
+      label: {
+        ru: 'Label "Email"',
+        en: 'Email Label',
+      },
+      type: 'text',
+      defaultValue: 'e-mail:',
+      localized: true,
+    },
+    {
       name: 'phone',
       label: {
         ru: 'Телефон',

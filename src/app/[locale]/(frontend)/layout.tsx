@@ -59,6 +59,8 @@ export default async function RootLayout({ children, params }: Props) {
             {children}
             <Contact
               title={contacts.title}
+              phoneLabel={contacts.phoneLabel}
+              emailLabel={contacts.emailLabel}
               phone={contacts.phone}
               email={contacts.email}
               telegramUrl={contacts.telegramUrl}

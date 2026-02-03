@@ -4,6 +4,8 @@ import type { Locale } from '@/i18n/config'
 
 export interface ContactsData {
   title: string
+  phoneLabel: string
+  emailLabel: string
   phone: string
   email: string
   telegramUrl: string
@@ -31,6 +33,8 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
 
     return {
       title: contacts.title || 'контакты',
+      phoneLabel: contacts.phoneLabel || 'телефон:',
+      emailLabel: contacts.emailLabel || 'e-mail:',
       phone: contacts.phone || '+7 (923) 337-01-09',
       email: contacts.email || 'tehphoto@mail.ru',
       telegramUrl: contacts.telegramUrl || '#',
@@ -50,6 +54,8 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
     console.error('Error fetching contacts:', error)
     return {
       title: 'контакты',
+      phoneLabel: 'телефон:',
+      emailLabel: 'e-mail:',
       phone: '+7 (923) 337-01-09',
       email: 'tehphoto@mail.ru',
       telegramUrl: '#',
