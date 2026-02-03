@@ -76,6 +76,7 @@ export default async function RootLayout({ children, params }: Props) {
               navTitle={footer.navTitle}
               contactsTitle={footer.contactsTitle}
               docsTitle={footer.docsTitle}
+              navLinks={footer.navLinks}
               phone={contacts.phone}
               email={contacts.email}
               docLinks={[
