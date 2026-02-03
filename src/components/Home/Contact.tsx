@@ -231,7 +231,9 @@ export const Contact: React.FC<ContactProps> = ({
             <button type="submit" className="request__submit" disabled={isSubmitting}>
               <span>{isSubmitting ? 'Отправка...' : formSubmitButtonText}</span>
               <span className="request__submit-circle">
-                <Image src="/svgicons/all/arrow-request.svg" alt="" width={37} height={37} />
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.4932 2.3803C20.5418 1.5533 19.9108 0.843459 19.0838 0.794823L5.60712 0.00226912C4.78012 -0.0463659 4.07028 0.584622 4.02165 1.41162C3.97301 2.23862 4.604 2.94846 5.431 2.9971L17.4103 3.70159L16.7058 15.6809C16.6572 16.5079 17.2882 17.2177 18.1152 17.2664C18.9422 17.315 19.652 16.684 19.7006 15.857L20.4932 2.3803ZM0.996182 18.2923L1.99274 19.4134L19.9923 3.41334L18.9958 2.29224L17.9992 1.17114L-0.000379955 17.1712L0.996182 18.2923Z" fill="#1E1E1E" />
+              </svg>
               </span>
             </button>
           </form>
