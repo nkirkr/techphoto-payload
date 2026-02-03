@@ -26,6 +26,7 @@ export async function getFooter(locale: Locale) {
     navTitle: footer.navTitle || 'навигация',
     contactsTitle: footer.contactsTitle || 'контакты',
     docsTitle: footer.docsTitle || 'документация',
+    copyright: footer.copyright || '© 2026 «техфото.рф». Все права защищены. ПО зарегистрировано в Роспатенте.',
     navLinks,
   }
 }

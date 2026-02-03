@@ -62,6 +62,7 @@ export const Footer: GlobalConfig = {
     {
       name: 'navItems',
       type: 'array',
+      localized: true,
       fields: [
         link({
           appearances: false,
@@ -74,6 +75,16 @@ export const Footer: GlobalConfig = {
           RowLabel: '@/Footer/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'copyright',
+      label: {
+        ru: 'Копирайт',
+        en: 'Copyright',
+      },
+      type: 'textarea',
+      localized: true,
+      defaultValue: '© 2026 «техфото.рф». Все права защищены. ПО зарегистрировано в Роспатенте.',
     },
   ],
   hooks: {

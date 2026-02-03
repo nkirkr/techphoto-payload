@@ -113,6 +113,48 @@ export const Documents: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'dataProcessingConsent',
+      label: {
+        ru: 'Согласие на обработку персональных данных',
+        en: 'Data Processing Consent',
+      },
+      type: 'group',
+      fields: [
+        {
+          name: 'title',
+          label: {
+            ru: 'Название (именительный падеж)',
+            en: 'Title (nominative)',
+          },
+          type: 'text',
+          defaultValue: 'согласие на обработку персональных данных',
+          localized: true,
+        },
+        {
+          name: 'titleInstrumental',
+          label: {
+            ru: 'Название (творительный падеж)',
+            en: 'Title (instrumental)',
+          },
+          type: 'text',
+          defaultValue: 'согласием на обработку персональных данных',
+          localized: true,
+          admin: {
+            description: {
+              ru: 'Используется в тексте: "ознакомлен(а) с [согласием на обработку...]"',
+              en: 'Used in text: "I have read [data processing consent]"',
+            },
+          },
+        },
+        {
+          name: 'url',
+          label: 'URL',
+          type: 'text',
+          defaultValue: 'https://x-potok.net/soglasie-na-obrabotku-dannyh',
+        },
+      ],
+    },
   ],
   hooks: {
     afterChange: [revalidateDocuments],

@@ -194,6 +194,32 @@ export const Contacts: GlobalConfig = {
         },
       },
     },
+    {
+      name: 'modalAndText',
+      label: {
+        ru: 'Текст "и" между ссылками (модальное окно)',
+        en: '"And" text between links (modal)',
+      },
+      type: 'text',
+      defaultValue: 'и',
+      localized: true,
+    },
+    {
+      name: 'modalFinalText',
+      label: {
+        ru: 'Финальный текст согласия (модальное окно)',
+        en: 'Final agreement text (modal)',
+      },
+      type: 'textarea',
+      defaultValue: ', и выражаю своё согласие на обработку моих персональных данных.',
+      localized: true,
+      admin: {
+        description: {
+          ru: 'Текст после ссылок в модальном окне',
+          en: 'Text after links in modal window',
+        },
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidateContacts],

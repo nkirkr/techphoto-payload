@@ -13,6 +13,11 @@ export interface DocumentsData {
     titleInstrumental: string
     url: string
   }
+  dataProcessingConsent: {
+    title: string
+    titleInstrumental: string
+    url: string
+  }
 }
 
 export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData> {
@@ -35,6 +40,11 @@ export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData
         titleInstrumental: documents.termsOfService?.titleInstrumental || 'пользовательским соглашением',
         url: documents.termsOfService?.url || '#',
       },
+      dataProcessingConsent: {
+        title: documents.dataProcessingConsent?.title || 'согласие на обработку персональных данных',
+        titleInstrumental: documents.dataProcessingConsent?.titleInstrumental || 'согласием на обработку персональных данных',
+        url: documents.dataProcessingConsent?.url || 'https://x-potok.net/soglasie-na-obrabotku-dannyh',
+      },
     }
   } catch (error) {
     // Return default values if database is not available during build
@@ -49,6 +59,11 @@ export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData
         title: 'пользовательское соглашение',
         titleInstrumental: 'пользовательским соглашением',
         url: '#',
+      },
+      dataProcessingConsent: {
+        title: 'согласие на обработку персональных данных',
+        titleInstrumental: 'согласием на обработку персональных данных',
+        url: 'https://x-potok.net/soglasie-na-obrabotku-dannyh',
       },
     }
   }

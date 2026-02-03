@@ -42,17 +42,23 @@ pool.query(sql)
 - `details_background_image_tablet_id` - фоновое изображение для планшетов
 - `details_background_image_mobile_id` - фоновое изображение для мобильных
 
-### 3. Footer - Локализованные текстовые поля
-- `description` - описание футера
-- `nav_title` - заголовок навигации
-- `contacts_title` - заголовок контактов
-- `docs_title` - заголовок документации
+### 3. Footer - Локализованные текстовые поля и навигация
+- **Таблица `footer_locales`**:
+  - `description` - описание футера
+  - `nav_title` - заголовок навигации
+  - `contacts_title` - заголовок контактов
+  - `docs_title` - заголовок документации
+- **Таблица `footer_nav_items_locales`**:
+  - Локализованные labels для элементов навигации
+  - Автоматический перевод: "главная" → "home", "портфолио" → "portfolio", "контакты" → "contacts"
 
 ### 4. Contacts - Локализованные тексты и labels
 - `privacy_policy_text` - текст согласия для формы на странице
 - `modal_privacy_policy_text` - текст согласия для модального окна
 - `phone_label` - label "телефон:" в форме
 - `email_label` - label "e-mail:" в форме
+
+**Важно:** Миграция автоматически инициализирует все поля дефолтными значениями для RU и EN локалей, если таблица пустая.
 
 ### 5. Documents - Заголовки в творительном падеже
 - `privacy_policy_title_instrumental` - "Политикой конфиденциальности"
@@ -78,6 +84,10 @@ AND column_name IN ('details_background_image_tablet_id', 'details_background_im
 SELECT column_name FROM information_schema.columns 
 WHERE table_name = 'footer_locales' 
 AND column_name IN ('description', 'nav_title', 'contacts_title', 'docs_title');
+
+-- Проверка Footer навигации
+SELECT table_name FROM information_schema.tables 
+WHERE table_name = 'footer_nav_items_locales';
 
 -- Проверка Contacts
 SELECT column_name FROM information_schema.columns 

@@ -16,6 +16,8 @@ export interface ContactsData {
   formSubmitButtonText: string
   privacyPolicyText: string
   modalPrivacyPolicyText: string
+  modalAndText: string
+  modalFinalText: string
   destinationEmail: string
   modalTitle: string
   modalSubtitle: string
@@ -45,6 +47,8 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       formSubmitButtonText: contacts.formSubmitButtonText || 'оставить заявку',
       privacyPolicyText: contacts.privacyPolicyText || 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
       modalPrivacyPolicyText: contacts.modalPrivacyPolicyText || 'Я подтверждаю, что ознакомлен(а) с',
+      modalAndText: contacts.modalAndText || 'и',
+      modalFinalText: contacts.modalFinalText || ', и выражаю своё согласие на обработку моих персональных данных.',
       destinationEmail: contacts.destinationEmail || 'tehphoto@mail.ru',
       modalTitle: contacts.modalTitle || 'оставьте заявку',
       modalSubtitle: contacts.modalSubtitle || 'мы свяжемся с вами в ближайшее время',
@@ -66,6 +70,8 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       formSubmitButtonText: 'оставить заявку',
       privacyPolicyText: 'Нажимая на кнопку, вы даете согласие на обработку своих персональных данных и соглашаетесь с',
       modalPrivacyPolicyText: 'Я подтверждаю, что ознакомлен(а) с',
+      modalAndText: 'и',
+      modalFinalText: ', и выражаю своё согласие на обработку моих персональных данных.',
       destinationEmail: 'tehphoto@mail.ru',
       modalTitle: 'оставьте заявку',
       modalSubtitle: 'мы свяжемся с вами в ближайшее время',

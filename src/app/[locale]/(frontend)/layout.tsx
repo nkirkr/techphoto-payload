@@ -81,6 +81,7 @@ export default async function RootLayout({ children, params }: Props) {
               navLinks={footer.navLinks}
               phone={contacts.phone}
               email={contacts.email}
+              copyright={footer.copyright}
               docLinks={[
                 { label: documents.privacyPolicy.title, href: documents.privacyPolicy.url },
                 { label: documents.termsOfService.title, href: documents.termsOfService.url },
@@ -94,8 +95,12 @@ export default async function RootLayout({ children, params }: Props) {
               emailPlaceholder={contacts.formEmailPlaceholder}
               submitButtonText={contacts.modalSubmitButtonText}
               agreementText={contacts.modalPrivacyPolicyText}
+              consentUrl={documents.dataProcessingConsent.url}
+              consentLinkText={documents.dataProcessingConsent.titleInstrumental}
+              andText={contacts.modalAndText}
               privacyPolicyUrl={documents.privacyPolicy.url}
               privacyPolicyLinkText={documents.privacyPolicy.titleInstrumental}
+              finalText={contacts.modalFinalText}
             />
           </ModalProvider>
         </Providers>

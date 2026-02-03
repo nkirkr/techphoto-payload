@@ -17,6 +17,8 @@ interface RequestModalProps {
   privacyPolicyLinkText?: string
   consentUrl?: string
   consentLinkText?: string
+  andText?: string
+  finalText?: string
   successTitle?: string
   successText?: string
 }
@@ -33,6 +35,8 @@ export const RequestModal: React.FC<RequestModalProps> = ({
   privacyPolicyLinkText = 'Политикой конфиденциальности',
   consentUrl = 'https://x-potok.net/soglasie-na-obrabotku-dannyh',
   consentLinkText = 'Согласием на обработку персональных данных',
+  andText = 'и',
+  finalText = ', и выражаю своё согласие на обработку моих персональных данных.',
   successTitle = 'Спасибо!',
   successText = 'Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.',
 }) => {
@@ -231,7 +235,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
                     >
                       {consentLinkText}
                     </a>{' '}
-                    и{' '}
+                    {andText}{' '}
                     <a
                       href={privacyPolicyUrl}
                       target="_blank"
@@ -240,7 +244,7 @@ export const RequestModal: React.FC<RequestModalProps> = ({
                     >
                       {privacyPolicyLinkText}
                     </a>
-                    , и выражаю своё согласие на обработку моих персональных данных.
+                    {finalText}
                   </span>
                 </label>
               </div>
