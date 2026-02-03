@@ -26,6 +26,7 @@ export const Details: React.FC<DetailsProps> = ({
       }
     >
       <div className="details__content">
+        <p className="details__text">{text}</p>
       </div>
     </section>
   )

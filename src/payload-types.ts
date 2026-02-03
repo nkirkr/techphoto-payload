@@ -1817,6 +1817,7 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1908,6 +1909,11 @@ export interface Contact {
    * Text before privacy policy links in modal window
    */
   modalPrivacyPolicyText?: string | null;
+  modalAndText?: string | null;
+  /**
+   * Text after links in modal window
+   */
+  modalFinalText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1935,6 +1941,14 @@ export interface Document {
     title?: string | null;
     /**
      * Used in agreement text (if needed)
+     */
+    titleInstrumental?: string | null;
+    url?: string | null;
+  };
+  dataProcessingConsent?: {
+    title?: string | null;
+    /**
+     * Used in text: "I have read [data processing consent]"
      */
     titleInstrumental?: string | null;
     url?: string | null;
@@ -1988,6 +2002,7 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -2061,6 +2076,8 @@ export interface ContactsSelect<T extends boolean = true> {
   modalSubmitButtonText?: T;
   privacyPolicyText?: T;
   modalPrivacyPolicyText?: T;
+  modalAndText?: T;
+  modalFinalText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -2078,6 +2095,13 @@ export interface DocumentsSelect<T extends boolean = true> {
         url?: T;
       };
   termsOfService?:
+    | T
+    | {
+        title?: T;
+        titleInstrumental?: T;
+        url?: T;
+      };
+  dataProcessingConsent?:
     | T
     | {
         title?: T;
