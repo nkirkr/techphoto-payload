@@ -31,7 +31,7 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
     const contacts = await payload.findGlobal({
       slug: 'contacts',
       locale,
-    })
+    }) as any
 
     return {
       title: contacts.title || 'контакты',

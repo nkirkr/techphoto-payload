@@ -13,7 +13,7 @@ export async function getFooter(locale: Locale) {
   const footer = await payload.findGlobal({
     slug: 'footer',
     locale,
-  })
+  }) as any
 
   // Преобразуем navItems из Payload формата в FooterLink[]
   const navLinks: FooterLink[] = (footer.navItems || []).map((item: any) => ({

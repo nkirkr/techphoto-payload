@@ -27,7 +27,7 @@ export async function getDocuments(locale: Locale = 'ru'): Promise<DocumentsData
     const documents = await payload.findGlobal({
       slug: 'documents',
       locale,
-    })
+    }) as any
 
     return {
       privacyPolicy: {
