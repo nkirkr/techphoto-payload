@@ -78,6 +78,12 @@ export const Contacts: GlobalConfig = {
       defaultValue: '#',
     },
     {
+      name: 'instagramUrl',
+      label: 'Instagram URL',
+      type: 'text',
+      defaultValue: '#',
+    },
+    {
       name: 'formNamePlaceholder',
       label: {
         ru: 'Плейсхолдер поля "Имя"',

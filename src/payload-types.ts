@@ -1890,6 +1890,7 @@ export interface Contact {
   email?: string | null;
   telegramUrl?: string | null;
   whatsappUrl?: string | null;
+  instagramUrl?: string | null;
   formNamePlaceholder?: string | null;
   formEmailPlaceholder?: string | null;
   formPhonePlaceholder?: string | null;
@@ -2066,6 +2067,7 @@ export interface ContactsSelect<T extends boolean = true> {
   email?: T;
   telegramUrl?: T;
   whatsappUrl?: T;
+  instagramUrl?: T;
   formNamePlaceholder?: T;
   formEmailPlaceholder?: T;
   formPhonePlaceholder?: T;

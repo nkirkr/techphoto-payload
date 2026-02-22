@@ -93,7 +93,7 @@
 		&.active {
 			.products__category-dot {
 				opacity: 1;
-				background: #233FA1;
+				background: var(--orange-light);
 				transform: scale(1.2);
 			}
 
@@ -104,7 +104,7 @@
 				line-height: 1.219;
 				letter-spacing: 0.03em;
 				text-transform: uppercase;
-				color: #233FA1;
+				color: var(--orange-light);
 				transform: translateX(0);
 
 				@include mobile {
@@ -113,7 +113,7 @@
 			}
 
 			.products__category-number {
-				color: #233FA1;
+				color: var(--orange-light);
 				opacity: 1;
 				font-weight: 600;
 				font-size: 16px;

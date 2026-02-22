@@ -6,9 +6,15 @@ import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { type Locale, locales, localeLabels } from '@/i18n/config'
 
+interface SubNavLink {
+  label: Record<Locale, string>
+  href: string
+}
+
 interface NavLink {
   label: Record<Locale, string>
   href: string
+  submenu?: SubNavLink[]
 }
 
 interface HeaderProps {
@@ -23,7 +29,17 @@ interface HeaderProps {
 
 const defaultNavLinks: NavLink[] = [
   { label: { ru: 'главная', en: 'home' }, href: '/' },
-  { label: { ru: 'портфолио', en: 'portfolio' }, href: '/#portfolio' },
+  {
+    label: { ru: 'портфолио', en: 'portfolio' },
+    href: '/#portfolio',
+    submenu: [
+      { label: { ru: 'предметная съемка', en: 'product photo' }, href: '/object' },
+      { label: { ru: 'станки', en: 'machines' }, href: '/machine' },
+      { label: { ru: 'макро', en: 'macro' }, href: '/macro' },
+      { label: { ru: 'персонал', en: 'staff' }, href: '/portraits' },
+      { label: { ru: '3D', en: '3D' }, href: '/3d' },
+    ],
+  },
   { label: { ru: 'написать нам', en: 'contact us' }, href: '/#contact' },
 ]
 
@@ -134,11 +150,26 @@ export const Header: React.FC<HeaderProps> = ({
             </Link>
           </div>
           <nav className="header__nav nav">
-            {navLinks.map((link, index) => (
-              <Link key={index} href={getLocalizedHref(link.href)} className="nav__link">
-                {link.label[locale]}
-              </Link>
-            ))}
+            {navLinks.map((link, index) =>
+              link.submenu ? (
+                <div key={index} className="nav__item">
+                  <Link href={getLocalizedHref(link.href)} className="nav__link">
+                    {link.label[locale]}
+                  </Link>
+                  <div className="nav__submenu">
+                    {link.submenu.map((sub, subIndex) => (
+                      <Link key={subIndex} href={getLocalizedHref(sub.href)} className="nav__submenu-link">
+                        {sub.label[locale]}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link key={index} href={getLocalizedHref(link.href)} className="nav__link">
+                  {link.label[locale]}
+                </Link>
+              )
+            )}
             <button
               type="button"
               className="nav__link nav__lang"

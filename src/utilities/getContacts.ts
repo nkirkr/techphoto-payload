@@ -10,6 +10,7 @@ export interface ContactsData {
   email: string
   telegramUrl: string
   whatsappUrl: string
+  instagramUrl: string
   formNamePlaceholder: string
   formEmailPlaceholder: string
   formPhonePlaceholder: string
@@ -41,6 +42,7 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       email: contacts.email || 'tehphoto@mail.ru',
       telegramUrl: contacts.telegramUrl || '#',
       whatsappUrl: contacts.whatsappUrl || '#',
+      instagramUrl: contacts.instagramUrl || '#',
       formNamePlaceholder: contacts.formNamePlaceholder || 'имя',
       formEmailPlaceholder: contacts.formEmailPlaceholder || 'email',
       formPhonePlaceholder: contacts.formPhonePlaceholder || 'тел',
@@ -64,6 +66,7 @@ export async function getContacts(locale: Locale = 'ru'): Promise<ContactsData> 
       email: 'tehphoto@mail.ru',
       telegramUrl: '#',
       whatsappUrl: '#',
+      instagramUrl: '#',
       formNamePlaceholder: 'имя',
       formEmailPlaceholder: 'email',
       formPhonePlaceholder: 'тел',

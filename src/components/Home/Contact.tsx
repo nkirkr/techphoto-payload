@@ -12,6 +12,7 @@ interface ContactProps {
   email?: string
   telegramUrl?: string
   whatsappUrl?: string
+  instagramUrl?: string
   privacyPolicyUrl?: string
   formNamePlaceholder?: string
   formEmailPlaceholder?: string
@@ -29,6 +30,7 @@ export const Contact: React.FC<ContactProps> = ({
   email = 'tehphoto@mail.ru',
   telegramUrl = '#',
   whatsappUrl = '#',
+  instagramUrl = '#',
   privacyPolicyUrl = 'https://x-potok.net/policy',
   formNamePlaceholder = 'имя',
   formEmailPlaceholder = 'email',
@@ -124,6 +126,9 @@ export const Contact: React.FC<ContactProps> = ({
               <a href={telegramUrl} className="request__social" aria-label="Telegram">
                 <Image src="/svgicons/all/tg.svg" alt="Telegram" width={31} height={31} />
               </a>
+              <a href={instagramUrl} className="request__social" aria-label="Instagram">
+                <Image src="/svgicons/all/inst.svg" alt="Instagram" width={31} height={31} />
+              </a>
             </div>
           </div>
 
@@ -150,6 +155,9 @@ export const Contact: React.FC<ContactProps> = ({
             </a>
             <a href={telegramUrl} className="request__social" target="_blank" aria-label="Telegram">
               <Image src="/svgicons/all/tg.svg" alt="Telegram" width={31} height={31} />
+            </a>
+            <a href={instagramUrl} className="request__social" target="_blank" aria-label="Instagram">
+              <Image src="/svgicons/all/inst.svg" alt="Instagram" width={31} height={31} />
             </a>
           </div>
         </div>

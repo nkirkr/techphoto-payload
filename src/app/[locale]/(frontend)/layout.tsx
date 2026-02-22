@@ -65,6 +65,7 @@ export default async function RootLayout({ children, params }: Props) {
               email={contacts.email}
               telegramUrl={contacts.telegramUrl}
               whatsappUrl={contacts.whatsappUrl}
+              instagramUrl={contacts.instagramUrl}
               privacyPolicyUrl={documents.privacyPolicy.url}
               formNamePlaceholder={contacts.formNamePlaceholder}
               formEmailPlaceholder={contacts.formEmailPlaceholder}
