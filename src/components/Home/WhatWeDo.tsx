@@ -24,7 +24,7 @@ interface WhatWeDoProps {
   features?: Feature[]
 }
 
-const defaultCards: Card[] = [
+export const defaultCards: Card[] = [
   {
     title: 'Предметная съемка',
     href: '/object',

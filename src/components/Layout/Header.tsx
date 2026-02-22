@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { type Locale, locales, localeLabels } from '@/i18n/config'
+import { defaultCards } from '@/components/Home/WhatWeDo'
 
 interface SubNavLink {
   label: Record<Locale, string>
@@ -32,13 +33,10 @@ const defaultNavLinks: NavLink[] = [
   {
     label: { ru: 'портфолио', en: 'portfolio' },
     href: '/#portfolio',
-    submenu: [
-      { label: { ru: 'предметная съемка', en: 'product photo' }, href: '/object' },
-      { label: { ru: 'станки', en: 'machines' }, href: '/machine' },
-      { label: { ru: 'макро', en: 'macro' }, href: '/macro' },
-      { label: { ru: 'персонал', en: 'staff' }, href: '/portraits' },
-      { label: { ru: '3D', en: '3D' }, href: '/3d' },
-    ],
+    submenu: defaultCards.map((card) => ({
+      label: { ru: card.title, en: card.title },
+      href: card.href,
+    })),
   },
   { label: { ru: 'написать нам', en: 'contact us' }, href: '/#contact' },
 ]
