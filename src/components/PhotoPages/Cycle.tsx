@@ -11,6 +11,7 @@ interface CycleProps {
   imageTablet?: string
   imageMobile?: string
   imageAlt?: string
+  variant?: string
 }
 
 export const Cycle: React.FC<CycleProps> = ({
@@ -22,9 +23,10 @@ export const Cycle: React.FC<CycleProps> = ({
   imageTablet,
   imageMobile,
   imageAlt = '',
+  variant = 'object',
 }) => {
   return (
-    <section className="cycle cycle--object">
+    <section className={`cycle cycle--${variant}`}>
       <div className="cycle__container">
         <div className="cycle__text-row">
           <p className="cycle__text cycle__text--left">{leftText}</p>
