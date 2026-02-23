@@ -10,6 +10,7 @@ export interface HomePageData {
   heroButtonText: string
   heroPortfolioButtonText: string
   heroBackgroundImage?: string
+  heroVideo?: string
 
   // What We Do
   whatWeDoText: string
@@ -72,6 +73,7 @@ export async function getHomePage(locale: Locale = 'ru'): Promise<HomePageData |
       heroButtonText: (homePage as any).heroButtonText || 'Оставьте заявку',
       heroPortfolioButtonText: (homePage as any).heroPortfolioButtonText || 'Посмотреть портфолио',
       heroBackgroundImage: getMediaUrl((homePage as any).heroBackgroundImage),
+      heroVideo: getMediaUrl((homePage as any).heroVideo) || undefined,
 
       // What We Do
       whatWeDoText:

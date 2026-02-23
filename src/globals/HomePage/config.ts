@@ -62,11 +62,32 @@ export const HomePage: GlobalConfig = {
     {
       name: 'heroBackgroundImage',
       label: {
-        ru: 'Hero: Фоновое изображение',
-        en: 'Hero: Background Image',
+        ru: 'Hero: Фоновое изображение (постер)',
+        en: 'Hero: Background Image (poster)',
       },
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description: {
+          ru: 'Используется как фон, либо как постер для видео',
+          en: 'Used as background, or as poster for video',
+        },
+      },
+    },
+    {
+      name: 'heroVideo',
+      label: {
+        ru: 'Hero: Видео (необязательно)',
+        en: 'Hero: Video (optional)',
+      },
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: {
+          ru: 'Если указано — видео воспроизводится вместо изображения. Изображение выше будет использоваться как постер.',
+          en: 'If set — video plays instead of image. The image above will be used as poster.',
+        },
+      },
     },
     // Секция "Что мы предлагаем"
     {

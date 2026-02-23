@@ -12,6 +12,7 @@ interface HeroProps {
   portfolioButtonText?: string
   backgroundImage?: string
   backgroundImageMobile?: string
+  videoSrc?: string
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -22,14 +23,26 @@ export const Hero: React.FC<HeroProps> = ({
   portfolioButtonText = 'Посмотреть портфолио',
   backgroundImage = '/home/hero.png',
   backgroundImageMobile = '/home/hero-mob.png',
+  videoSrc,
 }) => {
   const { openModal } = useModal()
 
   return (
     <section
       className="hero"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={videoSrc ? undefined : { backgroundImage: `url(${backgroundImage})` }}
     >
+      {videoSrc && (
+        <video
+          className="hero__video"
+          src={videoSrc}
+          poster={backgroundImage}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      )}
       <div className="container">
         <div className="hero__top">
           <Image

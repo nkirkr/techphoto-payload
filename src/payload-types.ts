@@ -1831,7 +1831,14 @@ export interface HomePage {
   heroText?: string | null;
   heroButtonText?: string | null;
   heroPortfolioButtonText?: string | null;
+  /**
+   * Used as background, or as poster for video
+   */
   heroBackgroundImage?: (number | null) | Media;
+  /**
+   * If set — video plays instead of image. The image above will be used as poster.
+   */
+  heroVideo?: (number | null) | Media;
   whatWeDoText?: string | null;
   whatWeDoButtonText?: string | null;
   whatWeDoSectionTitle?: string | null;
@@ -2018,6 +2025,7 @@ export interface HomePageSelect<T extends boolean = true> {
   heroButtonText?: T;
   heroPortfolioButtonText?: T;
   heroBackgroundImage?: T;
+  heroVideo?: T;
   whatWeDoText?: T;
   whatWeDoButtonText?: T;
   whatWeDoSectionTitle?: T;

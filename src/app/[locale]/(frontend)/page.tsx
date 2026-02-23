@@ -70,6 +70,7 @@ export default async function HomePageComponent({ params }: Props) {
         buttonText={data?.heroButtonText}
         portfolioButtonText={data?.heroPortfolioButtonText}
         backgroundImage={data?.heroBackgroundImage || '/home/hero.png'}
+        videoSrc={data?.heroVideo}
       />
       <WhatWeDo
         text={data?.whatWeDoText}
