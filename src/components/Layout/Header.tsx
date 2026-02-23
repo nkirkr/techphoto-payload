@@ -123,13 +123,13 @@ export const Header: React.FC<HeaderProps> = ({
       <header className={`header ${isMenuOpen ? 'menu-open' : ''}`}>
         <div className="container header__content">
           <div className={`header__left ${isMenuOpen ? 'menu-open' : ''}`}>
-            <button
+            {/* <button
               type="button"
               className="header__lang-mobile"
               onClick={() => switchLocale(otherLocale)}
             >
               {localeLabels[otherLocale]}
-            </button>
+            </button> */}
             <Link href={getLocalizedHref('/')} className="header__logo" onClick={closeMenu}>
               <Image
                 src={logoDark}
@@ -176,6 +176,13 @@ export const Header: React.FC<HeaderProps> = ({
               {localeLabels[otherLocale]}
             </button>
           </nav>
+          <button
+            type="button"
+            className="header__lang-mobile"
+            onClick={() => switchLocale(otherLocale)}
+          >
+            {localeLabels[otherLocale]}
+          </button>
           <button
             className={`header__burger ${isMenuOpen ? 'menu-open' : ''}`}
             type="button"

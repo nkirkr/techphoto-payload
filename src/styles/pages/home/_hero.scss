@@ -8,7 +8,7 @@
 	margin-top: 76px;
 
 	@include tablet {
-		height: 600px;
+		height: calc(100vh - 76px);
 	}
 
 	@include mobile {
@@ -27,7 +27,69 @@
 			padding: 0;
 		}
 	}
-
+	&__lines {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		span {
+			width: 354px;
+			height: 0.6px;
+			background-color: var(--white-100);
+			position: absolute;
+			&:nth-of-type(1) {
+				width: 20%;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&:nth-of-type(2) {
+				width: 20%;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&:nth-of-type(3) {
+				height: 70%;
+				width: 0.6px;
+				left: 50%;
+				top: 0;
+				transform: translateY(-50%);
+			}
+			&:nth-of-type(4) {
+				height: 35%;
+				width: 0.6px;
+				left: 50%;
+				bottom: -150px;
+				transform: translateY(-50%);
+			}
+		}
+		@include mobile {
+			display: none;
+		}
+	}
+	// &::before {
+	// 	content: '';
+	// 	width: 354px;
+	// 	height: 1px;
+	// 	background-color: var(-w);
+	// 	position: absolute;
+	// 	top: 50%;
+	// 	transform: translateY(-50%);
+	// 	left: 0;
+	// 	z-index: 1;
+	// }
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var(--dark-100);
+		opacity: 0.6;
+		z-index: 1;
+	}
 	&__top {
 		position: absolute;
 		top: 53%;
@@ -121,7 +183,9 @@
       text-transform: uppercase;
       text-align: right;
       color: var(--white-100);
-
+		@include tablet {
+			max-width: 398px;
+		}
 		@include mobile {
 			font-size: 12px;
 			text-align: center;

@@ -54,6 +54,13 @@ export const Hero: React.FC<HeroProps> = ({
           </Link>
         </div>
       </div>
+      <div className="hero__overlay"></div>
+      <div className="hero__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </section>
   )
 }
