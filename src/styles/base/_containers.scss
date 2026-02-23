@@ -1,7 +1,7 @@
 /* Контейнеры */
 .container {
 	margin: 0 auto;
-	padding: 0 120px;
+	padding: 0 var(--container-padding);
 	max-width: var(--container-width);
 	width: 100%;
 
