@@ -238,6 +238,9 @@
 		position: relative;
 		z-index: 2;
 		background-color: transparent;
-		transform: translateX(-180px);
+		transform: translateX(-195px);
+		@include mobile {
+			display: none;
+		}
 	}
 }
