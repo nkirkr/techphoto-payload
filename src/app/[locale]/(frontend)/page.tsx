@@ -1,4 +1,5 @@
 import { Hero, WhatWeDo, Steps, Details } from '@/components/Home'
+import { Preloader } from '@/components/PhotoPages'
 import { getHomePage } from '@/utilities/getHomePage'
 import { getPortfolioCards } from '@/utilities/getPortfolioCards'
 import type { Locale } from '@/i18n/config'
@@ -64,6 +65,7 @@ export default async function HomePageComponent({ params }: Props) {
 
   return (
     <main>
+      <Preloader />
       <Hero
         subtitle={data?.heroSubtitle}
         text={data?.heroText}

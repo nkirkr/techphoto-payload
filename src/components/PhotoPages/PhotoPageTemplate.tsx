@@ -1,6 +1,6 @@
 'use client'
 
-import { PageHero, PhotosGrid, WhereUsed, Cycle, ProductsSection } from '@/components/PhotoPages'
+import { PageHero, PhotosGrid, WhereUsed, Cycle, ProductsSection, Preloader } from '@/components/PhotoPages'
 import type { PhotoPageData } from '@/utilities/getPhotoPage'
 
 interface PhotoPageTemplateProps {
@@ -14,6 +14,7 @@ export const PhotoPageTemplate: React.FC<PhotoPageTemplateProps> = ({
 }) => {
   return (
     <main>
+      <Preloader />
       <PageHero
         title={data.heroTitle}
         description={data.heroDescription}
