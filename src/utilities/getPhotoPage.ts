@@ -72,7 +72,7 @@ export async function getPhotoPage(slug: string, locale: Locale = 'ru'): Promise
         type: photo.type || 'image',
         src: photo.type === 'video' ? getMediaUrl(photo.video) : getMediaUrl(photo.image),
         alt: photo.alt || '',
-        poster: photo.type === 'video' ? getMediaUrl((photo as any).videoPoster) || undefined : undefined,
+        poster: photo.type === 'video' ? getMediaUrl((photo as Record<string, unknown>).videoPoster as Media | null) || undefined : undefined,
       })),
       showCycle: page.showCycle || false,
       cycleNumber: page.cycleNumber || '3',
