@@ -33,6 +33,7 @@ export const plugins: Plugin[] = [
     },
     token: process.env.BLOB_READ_WRITE_TOKEN || '',
     enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+    clientUpload: true,
   }),
   redirectsPlugin({
     collections: ['pages', 'posts'],
