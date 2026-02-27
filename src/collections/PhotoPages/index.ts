@@ -130,6 +130,16 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
                   },
                 },
                 {
+                  name: 'videoPoster',
+                  label: 'Постер для видео (первый кадр)',
+                  type: 'upload',
+                  relationTo: 'media',
+                  admin: {
+                    condition: (data, siblingData) => siblingData?.type === 'video',
+                    description: 'Изображение, которое отображается до начала воспроизведения видео',
+                  },
+                },
+                {
                   name: 'alt',
                   label: 'Alt текст',
                   type: 'text',

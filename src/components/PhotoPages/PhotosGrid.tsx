@@ -6,6 +6,7 @@ interface PhotoItem {
   type: 'image' | 'video'
   src: string
   alt?: string
+  poster?: string
   /** Optional layout class for special styling (portrait, video, video-wide, landscape) */
   layoutClass?: 'portrait' | 'video' | 'video-wide' | 'landscape'
 }
@@ -43,6 +44,7 @@ export const PhotosGrid: React.FC<PhotosGridProps> = ({
                 loop
                 muted
                 playsInline
+                poster={photo.poster}
                 aria-label={photo.alt || 'Video'}
               >
                 <source src={photo.src} type="video/mp4" />

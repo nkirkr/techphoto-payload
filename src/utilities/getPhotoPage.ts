@@ -13,6 +13,7 @@ export interface PhotoPageData {
     type: 'image' | 'video'
     src: string
     alt: string
+    poster?: string
   }>
   showCycle: boolean
   cycleNumber?: string
@@ -71,6 +72,7 @@ export async function getPhotoPage(slug: string, locale: Locale = 'ru'): Promise
         type: photo.type || 'image',
         src: photo.type === 'video' ? getMediaUrl(photo.video) : getMediaUrl(photo.image),
         alt: photo.alt || '',
+        poster: photo.type === 'video' ? getMediaUrl((photo as any).videoPoster) || undefined : undefined,
       })),
       showCycle: page.showCycle || false,
       cycleNumber: page.cycleNumber || '3',
