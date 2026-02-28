@@ -99,7 +99,7 @@ export const PhotoPages: CollectionConfig<'photo-pages'> = {
               label: 'Фотографии',
               type: 'array',
               minRows: 1,
-              maxRows: 12,
+              maxRows: 15,
               fields: [
                 {
                   name: 'type',

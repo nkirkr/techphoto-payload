@@ -806,6 +806,10 @@ export interface PhotoPage {
         type?: ('image' | 'video') | null;
         image?: (number | null) | Media;
         video?: (number | null) | Media;
+        /**
+         * Изображение, которое отображается до начала воспроизведения видео
+         */
+        videoPoster?: (number | null) | Media;
         alt?: string | null;
         id?: string | null;
       }[]
@@ -1281,6 +1285,7 @@ export interface PhotoPagesSelect<T extends boolean = true> {
         type?: T;
         image?: T;
         video?: T;
+        videoPoster?: T;
         alt?: T;
         id?: T;
       };
